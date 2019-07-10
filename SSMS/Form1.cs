@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
+using System.Threading;
 
 namespace SSMS
 {
@@ -414,11 +415,12 @@ Name nvarchar(50) not null          --可变长度，每个字符占用两个字
         {
             if((e.Control) && (e.KeyCode == Keys.W))
             {
-                tabControl1.Controls.Remove(tabControl1.SelectedTab);
 
+                tabControl1.Controls.Remove(tabControl1.SelectedTab);
+                
                 SendKeys.Send("^+{Tab}");
             }
-
+           
             
         }
     }
