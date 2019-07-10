@@ -13,7 +13,6 @@ E:\LJZ\C#\WinForm\SQL_Tool\新建文件夹\obj\Debug\SQL_Tool.pdb
 E:\Project\C#\WinForm\SQL_Tool\bin\Debug\SQL_Tool.exe
 E:\Project\C#\WinForm\SQL_Tool\bin\Debug\SQL_Tool.pdb
 E:\Project\C#\WinForm\SQL_Tool\obj\Debug\SQL_Tool.Form1.resources
-E:\Project\C#\WinForm\SQL_Tool\obj\Debug\SQL_Tool.Form2.resources
 E:\Project\C#\WinForm\SQL_Tool\obj\Debug\SQL_Tool.Properties.Resources.resources
 E:\Project\C#\WinForm\SQL_Tool\obj\Debug\SQL_Tool.csproj.GenerateResource.cache
 E:\Project\C#\WinForm\SQL_Tool\obj\Debug\SQL_Tool.csproj.CoreCompileInputs.cache

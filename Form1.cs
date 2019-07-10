@@ -231,7 +231,7 @@ namespace SQL_Tool
             SaveFileDialog saveFileDialog = new SaveFileDialog();
             saveFileDialog.FileName = cmbTable.Text;
             saveFileDialog.Filter = "Visual C# 文件(*.cs)|*.cs";
-            saveFileDialog.ShowDialog();
+            if(saveFileDialog.ShowDialog()==DialogResult.OK)
             File.WriteAllText(saveFileDialog.FileName, txtEntityClass.Text, Encoding.UTF8);
         }
 
