@@ -8,6 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
 
 namespace SQL_Tool
 {
@@ -183,18 +184,30 @@ namespace SQL_Tool
 
         private void 执行F5ToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            string sql="";
             try
             {
-
-                    //if (!txtSQL.Focused) return;
+                
+                    
                     if (txtSQL.SelectionLength > 0)
                     {
-                        dataGridView1.DataSource = DBHelper.GetDataTable(txtSQL.SelectedText);
+                    sql=txtSQL.SelectedText;
                     }
                     else
                     {
-                        dataGridView1.DataSource = DBHelper.GetDataTable(txtSQL.Text);
+                    sql=txtSQL.Text;
                     }
+
+                if (sql.Contains("GO\r\n"))
+                { 
+                    string[] datas = Regex.Split(sql, "GO", RegexOptions.IgnoreCase);
+                    foreach (string str in datas)
+                    {
+                        DBHelper.GetDataTable(str);
+                    }
+                }
+                else dataGridView1.DataSource = DBHelper.GetDataTable(sql);
+
             }
             catch (Exception ex)
             {
