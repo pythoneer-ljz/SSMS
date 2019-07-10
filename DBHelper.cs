@@ -83,7 +83,12 @@ namespace SQL_Tool
 
 
 
-
+        public static void UpdateToDatabase(string tableName,DataTable dt) {
+            SqlDataAdapter dap=new SqlDataAdapter("select * from "+tableName, conn);
+            SqlCommandBuilder sqlCommandBuilder = new SqlCommandBuilder(dap);
+            dap.Update(dt);
+            
+        }
 
 
 

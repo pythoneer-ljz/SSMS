@@ -1,0 +1,44 @@
+﻿public class Yh_aj_FileDirectory
+{
+	private int _yh_id;
+	public int yh_id
+	{
+		get { return _yh_id; }
+		set { _yh_id = value; }
+	}
+
+	private string _yh_gclb_id;
+	public string yh_gclb_id
+	{
+		get { return _yh_gclb_id; }
+		set { _yh_gclb_id = value; }
+	}
+
+	private string _yh_aj_name;
+	public string yh_aj_name
+	{
+		get { return _yh_aj_name; }
+		set { _yh_aj_name = value; }
+	}
+
+	private int _yh_aj_no;
+	public int yh_aj_no
+	{
+		get { return _yh_aj_no; }
+		set { _yh_aj_no = value; }
+	}
+
+	private string _yh_file_name;
+	public string yh_file_name
+	{
+		get { return _yh_file_name; }
+		set { _yh_file_name = value; }
+	}
+
+	private int _yh_file_no;
+	public int yh_file_no
+	{
+		get { return _yh_file_no; }
+		set { _yh_file_no = value; }
+	}
+}

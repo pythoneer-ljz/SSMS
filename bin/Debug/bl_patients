@@ -1,0 +1,219 @@
+﻿public class bl_patients
+{
+	private int _pat_no;
+	public int pat_no
+	{
+		get { return _pat_no; }
+		set { _pat_no = value; }
+	}
+
+	private string _pat_in_no;
+	public string pat_in_no
+	{
+		get { return _pat_in_no; }
+		set { _pat_in_no = value; }
+	}
+
+	private string _pat_name;
+	public string pat_name
+	{
+		get { return _pat_name; }
+		set { _pat_name = value; }
+	}
+
+	private string _pat_sex;
+	public string pat_sex
+	{
+		get { return _pat_sex; }
+		set { _pat_sex = value; }
+	}
+
+	private int _pat_age;
+	public int pat_age
+	{
+		get { return _pat_age; }
+		set { _pat_age = value; }
+	}
+
+	private DateTime _pat_date;
+	public DateTime pat_date
+	{
+		get { return _pat_date; }
+		set { _pat_date = value; }
+	}
+
+	private string _pat_s_dept;
+	public string pat_s_dept
+	{
+		get { return _pat_s_dept; }
+		set { _pat_s_dept = value; }
+	}
+
+	private string _pat_s_doc;
+	public string pat_s_doc
+	{
+		get { return _pat_s_doc; }
+		set { _pat_s_doc = value; }
+	}
+
+	private string _pat_j_doc;
+	public string pat_j_doc
+	{
+		get { return _pat_j_doc; }
+		set { _pat_j_doc = value; }
+	}
+
+	private string _pat_c_doc;
+	public string pat_c_doc
+	{
+		get { return _pat_c_doc; }
+		set { _pat_c_doc = value; }
+	}
+
+	private string _pat_q_name;
+	public string pat_q_name
+	{
+		get { return _pat_q_name; }
+		set { _pat_q_name = value; }
+	}
+
+	private DateTime _pat_p_date;
+	public DateTime pat_p_date
+	{
+		get { return _pat_p_date; }
+		set { _pat_p_date = value; }
+	}
+
+	private string _pat_id;
+	public string pat_id
+	{
+		get { return _pat_id; }
+		set { _pat_id = value; }
+	}
+
+	private string _pat_zy_id;
+	public string pat_zy_id
+	{
+		get { return _pat_zy_id; }
+		set { _pat_zy_id = value; }
+	}
+
+	private string _pat_diag;
+	public string pat_diag
+	{
+		get { return _pat_diag; }
+		set { _pat_diag = value; }
+	}
+
+	private int _pat_lk;
+	public int pat_lk
+	{
+		get { return _pat_lk; }
+		set { _pat_lk = value; }
+	}
+
+	private string _pat_pp;
+	public string pat_pp
+	{
+		get { return _pat_pp; }
+		set { _pat_pp = value; }
+	}
+
+	private string _pat_tel;
+	public string pat_tel
+	{
+		get { return _pat_tel; }
+		set { _pat_tel = value; }
+	}
+
+	private string _pat_linkman;
+	public string pat_linkman
+	{
+		get { return _pat_linkman; }
+		set { _pat_linkman = value; }
+	}
+
+	private decimal _pat_cash;
+	public decimal pat_cash
+	{
+		get { return _pat_cash; }
+		set { _pat_cash = value; }
+	}
+
+	private DateTime _pat_j_date;
+	public DateTime pat_j_date
+	{
+		get { return _pat_j_date; }
+		set { _pat_j_date = value; }
+	}
+
+	private string _pat_back_name;
+	public string pat_back_name
+	{
+		get { return _pat_back_name; }
+		set { _pat_back_name = value; }
+	}
+
+	private DateTime _pat_back_date;
+	public DateTime pat_back_date
+	{
+		get { return _pat_back_date; }
+		set { _pat_back_date = value; }
+	}
+
+	private int _pat_days;
+	public int pat_days
+	{
+		get { return _pat_days; }
+		set { _pat_days = value; }
+	}
+
+	private int _pat_flg;
+	public int pat_flg
+	{
+		get { return _pat_flg; }
+		set { _pat_flg = value; }
+	}
+
+	private int _pat_num;
+	public int pat_num
+	{
+		get { return _pat_num; }
+		set { _pat_num = value; }
+	}
+
+	private int _pat_lk_flg;
+	public int pat_lk_flg
+	{
+		get { return _pat_lk_flg; }
+		set { _pat_lk_flg = value; }
+	}
+
+	private int _pat_pp_flg;
+	public int pat_pp_flg
+	{
+		get { return _pat_pp_flg; }
+		set { _pat_pp_flg = value; }
+	}
+
+	private string _pat_operator;
+	public string pat_operator
+	{
+		get { return _pat_operator; }
+		set { _pat_operator = value; }
+	}
+
+	private int _pat_pp_show;
+	public int pat_pp_show
+	{
+		get { return _pat_pp_show; }
+		set { _pat_pp_show = value; }
+	}
+
+	private int _pat_lk_show;
+	public int pat_lk_show
+	{
+		get { return _pat_lk_show; }
+		set { _pat_lk_show = value; }
+	}
+}
