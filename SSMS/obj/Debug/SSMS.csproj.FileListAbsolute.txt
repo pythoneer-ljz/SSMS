@@ -1,0 +1,9 @@
+E:\Project\C#\WinForm\SSMS\SSMS\bin\Debug\SSMS.exe
+E:\Project\C#\WinForm\SSMS\SSMS\bin\Debug\SSMS.pdb
+E:\Project\C#\WinForm\SSMS\SSMS\obj\Debug\SSMS.Form1.resources
+E:\Project\C#\WinForm\SSMS\SSMS\obj\Debug\SSMS.Properties.Resources.resources
+E:\Project\C#\WinForm\SSMS\SSMS\obj\Debug\SSMS.csproj.GenerateResource.cache
+E:\Project\C#\WinForm\SSMS\SSMS\obj\Debug\SSMS.csproj.CoreCompileInputs.cache
+E:\Project\C#\WinForm\SSMS\SSMS\obj\Debug\SSMS.exe
+E:\Project\C#\WinForm\SSMS\SSMS\obj\Debug\SSMS.pdb
+E:\Project\C#\WinForm\SSMS\SSMS\obj\Debug\SSMS.csprojAssemblyReference.cache
