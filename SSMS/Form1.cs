@@ -168,6 +168,9 @@ namespace SSMS
         {
             tableName = cmbTable.Text;
 
+            TextBox txtSQL = (TextBox)(tabControl1.SelectedTab.Controls.Find("txtSQL", true)[0]);
+            DataGridView dataGridView1 = (DataGridView)(tabControl1.SelectedTab.Controls.Find("dataGridView1", true)[0]);
+
             txtSQL.Text += "\r\nSELECT * FROM " + tableName + "";
 
             try
@@ -182,6 +185,14 @@ namespace SSMS
             {
                 MessageBox.Show(ex.Message);
             }
+
+
+
+
+
+
+
+
         }
 
         private void 执行F5ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -189,7 +200,7 @@ namespace SSMS
             string sql = "";
             try
             {
-                TextBox txtSQL=(TextBox)(tabControl1.SelectedTab.Controls.Find("txtSQL", true)[0]);
+                TextBox txtSQL = (TextBox)(tabControl1.SelectedTab.Controls.Find("txtSQL", true)[0]);
                 DataGridView dataGridView1 = (DataGridView)(tabControl1.SelectedTab.Controls.Find("dataGridView1", true)[0]);
                 if (txtSQL.SelectionLength > 0)
                 {
@@ -209,7 +220,7 @@ namespace SSMS
                     }
                 }
                 else dataGridView1.DataSource = DBHelper.GetDataTable(sql);
-                
+
             }
             catch (Exception ex)
             {
@@ -229,7 +240,7 @@ namespace SSMS
 
         private void 保存ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DBHelper.UpdateToDatabase(cmbTable.Text, (DataTable)dataGridView1.DataSource);
+            MessageBox.Show("受影响行数: "+ DBHelper.UpdateToDatabase(cmbTable.Text, (DataTable)dataGridView1.DataSource));
 
         }
 
@@ -256,7 +267,8 @@ namespace SSMS
         {
             TextBox txtSQL = (TextBox)(tabControl1.SelectedTab.Controls.Find("txtSQL", true)[0]);
 
-            txtSQL.Text += @"--drop database MyDatabase
+            txtSQL.Text += @"
+--drop database MyDatabase
 
 create database MyDatabase
 
@@ -297,16 +309,19 @@ size = 5mb,                         --日志文件的初始大小
 filegrowth = 5mb                    --超过默认值后自动再扩容5mb
 
 )
-
-
-  ";
+";
+            //光标移动到最后一个字符后面
+            txtSQL.Select(txtSQL.TextLength, 0);
+            //滚动到光标处
+            txtSQL.ScrollToCaret();
         }
 
         private void 创建表ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             TextBox txtSQL = (TextBox)(tabControl1.SelectedTab.Controls.Find("txtSQL", true)[0]);
 
-            txtSQL.Text += @"use MyDatabase
+            txtSQL.Text += @"
+use MyDatabase
 
 --drop table Table_1
 
@@ -314,12 +329,73 @@ create table Table_1                -- 创建表，设置表中列
 
 (
 
-ID int identity(1,1) primary key,   --自增  主键
+ID int identity(1,1) primary key,   --自增,种子1,增量1  主键
 
 Name nvarchar(50) not null          --可变长度，每个字符占用两个字节 最多50个字节
 
 )
- ";
+";
+            //光标移动到最后一个字符后面
+            txtSQL.Select(txtSQL.TextLength, 0);
+            //滚动到光标处
+            txtSQL.ScrollToCaret();
+        }
+
+        private void 创建存储过程ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            TextBox txtSQL = (TextBox)(tabControl1.SelectedTab.Controls.Find("txtSQL", true)[0]);
+
+            txtSQL.Text += @"
+--DROP PROCEDURE 存储过程名
+CREATE PROCEDURE 存储过程名
+@Var1 nvarchar(50),
+@Var2 nvarchar(50)
+AS
+BEGIN
+	SELECT * FROM Table_1 WHERE name=@Var1
+END
+";
+            //光标移动到最后一个字符后面
+            txtSQL.Select(txtSQL.TextLength, 0);
+            //滚动到光标处
+            txtSQL.ScrollToCaret();
+        }
+
+        private void 增删改列ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            TextBox txtSQL = (TextBox)(tabControl1.SelectedTab.Controls.Find("txtSQL", true)[0]);
+
+            txtSQL.Text += @"
+--新增列
+ALTER TABLE 列名
+ADD 列名 nvarchar(50)
+
+--删除列
+ALTER TABLE " + cmbTable.Text + @"
+DROP COLUMN 列名
+
+--修改列的数据类型
+ALTER TABLE " + cmbTable.Text + @"
+ALTER COLUMN 列名 nvarchar(50)
+";
+
+            //光标移动到最后一个字符后面
+            txtSQL.Select(txtSQL.TextLength, 0);
+            //滚动到光标处
+            txtSQL.ScrollToCaret();
+        }
+
+        private void 查看表结构ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            TextBox txtSQL = (TextBox)(tabControl1.SelectedTab.Controls.Find("txtSQL", true)[0]);
+
+            txtSQL.Text += @"
+SELECT COLUMN_NAME 列名,DATA_TYPE 数据类型,CHARACTER_MAXIMUM_LENGTH 最大长度,IS_NULLABLE 允许Null值,* FROM " + cmbDatabase.Text + ".information_schema.columns WHERE table_name = '" + cmbTable.Text + @"'
+";
+            //光标移动到最后一个字符后面
+            txtSQL.Select(txtSQL.TextLength, 0);
+            //滚动到光标处
+            txtSQL.ScrollToCaret();
         }
 
         private void dataGridView1_DataSourceChanged(object sender, EventArgs e)
@@ -341,8 +417,7 @@ Name nvarchar(50) not null          --可变长度，每个字符占用两个字
             // splitContainer1
             // 
             splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            splitContainer1.Location = new System.Drawing.Point(4, 4);
-            splitContainer1.Margin = new System.Windows.Forms.Padding(4);
+            splitContainer1.Location = new System.Drawing.Point(3, 3);
             splitContainer1.Name = "splitContainer1";
             splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -353,14 +428,17 @@ Name nvarchar(50) not null          --可变长度，每个字符占用两个字
             // splitContainer1.Panel2
             // 
             splitContainer1.Panel2.Controls.Add(dataGridView1);
-            splitContainer1.Size = new System.Drawing.Size(997, 502);
-            splitContainer1.SplitterDistance = 219;
+            splitContainer1.Size = new System.Drawing.Size(746, 399);
+            splitContainer1.SplitterDistance = 233;
             splitContainer1.SplitterWidth = 5;
             splitContainer1.TabIndex = 0;
             // 
             // txtSQL
             // 
             txtSQL.Dock = System.Windows.Forms.DockStyle.Fill;
+            txtSQL.BackColor = System.Drawing.Color.AliceBlue;
+            txtSQL.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            txtSQL.ForeColor = System.Drawing.Color.Black;
             txtSQL.Location = new System.Drawing.Point(0, 0);
             txtSQL.Margin = new System.Windows.Forms.Padding(4);
             txtSQL.Multiline = true;
@@ -419,15 +497,138 @@ Name nvarchar(50) not null          --可变长度，每个字符占用两个字
 
         private void tabControl1_KeyDown(object sender, KeyEventArgs e)
         {
-            if((e.Control) && (e.KeyCode == Keys.W))
+            if ((e.Control) && (e.KeyCode == Keys.W))
             {
 
                 tabControl1.Controls.Remove(tabControl1.SelectedTab);
-                
+
                 SendKeys.Send("^+{Tab}");
             }
-           
-            
+
+
         }
+
+        private void dataGridView1_DataSourceChanged_1(object sender, EventArgs e)
+        {
+            int rowCount = dataGridView1.RowCount;
+            int columnCount = dataGridView1.ColumnCount;
+
+            statusStrip1.Items.Clear();
+            statusStrip1.Items.Add("   RowCount: " + rowCount + "   ColumnCount: " + columnCount + "");
+        }
+
+        TextBox textBox1;
+
+        private void 查找ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form form = new Form();
+            form.Text = "查找";
+            form.Size = new Size(397, 133);
+            form.FormBorderStyle = FormBorderStyle.FixedDialog;
+            form.StartPosition = FormStartPosition.CenterParent;
+
+            Label label1 = new Label();
+            label1.AutoSize = true;
+            label1.Text = "查找内容";
+            label1.Location = new Point(9, 14);
+
+            TextBox textBox1 = new TextBox();
+            textBox1.Name = "txtWord";
+            textBox1.Location = new Point(67, 11);
+            textBox1.Size = new Size(176, 14);
+
+            Button button1 = new Button();
+            button1.Name = "btnPrev";
+            button1.Location = new Point(257, 11);
+            button1.Size = new Size(60, 21);
+            button1.Text = "上一个";
+            button1.Click += new EventHandler(btnPrev_Click);
+
+            Button button2 = new Button();
+            button2.Name = "btnNext";
+            button2.Location = new Point(323, 11);
+            button2.Size = new Size(60, 21);
+            button2.Text = "下一个";
+            button1.Click += new EventHandler(btnNext_Click);
+
+
+            form.Controls.Add(label1);
+            form.Controls.Add(textBox1);
+            form.Controls.Add(button1);
+            form.Controls.Add(button2);
+
+            form.Show();
+        }
+
+        MatchCollection matches;
+
+        int index = 0;
+        private void btnNext_Click(object sender, EventArgs e)
+
+        {
+
+            if (matches.Count > 0 && index < matches.Count)
+
+            {
+
+                Match match = matches[index];
+
+                int currentPos = match.Index;
+
+                this.textBox1.Select(currentPos, this.txtSQL.Text.Length);
+
+                if (index == matches.Count - 1)
+                {
+
+                    MessageBox.Show("end");
+
+                }
+
+                else
+
+                {
+
+                    index += 1;
+
+                }
+
+            }
+
+        }
+
+
+
+        private void btnPrev_Click(object sender, EventArgs e)
+
+        {
+
+            if (matches.Count > 0 && index >= 0)
+
+            {
+
+                Match match = matches[index];
+
+                int currentPos = match.Index;
+
+                this.textBox1.Select(currentPos, this.textBox1.Text.Length);
+
+                if (index == 0)
+
+                {
+
+                    MessageBox.Show("start");
+
+                }
+
+                else
+
+                {
+
+                    index -= 1;
+                
+                }
+            }
+        }
+
     }
 }

@@ -10,7 +10,7 @@ namespace SSMS
     {
         //Windows身份验证 Data Source=.;Initial Catalog=database;Integrated Security=True;Connect Timeout=1
         //SQL Server身份验证 Data Source=.;Initial Catalog=database;Persist Security Info=True;User ID=sa;Password=123;Connect Timeout=1
-        public static string connStr= "";
+        public static string connStr = "";
 
         public static SqlConnection conn = null;
 
@@ -83,11 +83,11 @@ namespace SSMS
 
 
 
-        public static void UpdateToDatabase(string tableName,DataTable dt) {
-            SqlDataAdapter dap=new SqlDataAdapter("select * from "+tableName, conn);
+        public static int UpdateToDatabase(string tableName, DataTable dt)
+        {
+            SqlDataAdapter dap = new SqlDataAdapter("select * from " + tableName, conn);
             SqlCommandBuilder sqlCommandBuilder = new SqlCommandBuilder(dap);
-            dap.Update(dt);
-            
+            return dap.Update(dt);
         }
 
 
