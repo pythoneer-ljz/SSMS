@@ -25,7 +25,11 @@ namespace SSMS
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            if (Program.args.Length == 1)
+            {
+                string text = File.ReadAllText(Program.args[0], Encoding.UTF8);
+                txtSQL.Text = text;
+            }
         }
 
         private void txtSQL_KeyDown(object sender, KeyEventArgs e)
@@ -198,36 +202,46 @@ namespace SSMS
         private void 执行F5ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string sql = "";
-            try
+            //try
+            //{
+            TextBox txtSQL = (TextBox)(tabControl1.SelectedTab.Controls.Find("txtSQL", true)[0]);
+            DataGridView dataGridView1 = (DataGridView)(tabControl1.SelectedTab.Controls.Find("dataGridView1", true)[0]);
+            if (txtSQL.SelectionLength > 0)
             {
-                TextBox txtSQL = (TextBox)(tabControl1.SelectedTab.Controls.Find("txtSQL", true)[0]);
-                DataGridView dataGridView1 = (DataGridView)(tabControl1.SelectedTab.Controls.Find("dataGridView1", true)[0]);
-                if (txtSQL.SelectionLength > 0)
-                {
-                    sql = txtSQL.SelectedText;
-                }
-                else
-                {
-                    sql = txtSQL.Text;
-                }
+                sql = txtSQL.SelectedText;
+            }
+            else
+            {
+                sql = txtSQL.Text;
+            }
 
-                if (sql.Contains("GO\r\n"))
+            if (sql.Contains("GO\r\n"))
+            {
+                string[] datas = Regex.Split(sql, "GO", RegexOptions.IgnoreCase);
+                foreach (string str in datas)
                 {
-                    string[] datas = Regex.Split(sql, "GO", RegexOptions.IgnoreCase);
-                    foreach (string str in datas)
+
+                    try
                     {
                         DBHelper.GetDataTable(str);
+
+                    }
+                    catch (Exception ex)
+                    {
+
+                        MessageBox.Show(ex.Message);
                     }
                 }
-                else dataGridView1.DataSource = DBHelper.GetDataTable(sql);
-
             }
-            catch (Exception ex)
-            {
+            else dataGridView1.DataSource = DBHelper.GetDataTable(sql);
 
-                MessageBox.Show(ex.Message);
+            //}
+            //catch (Exception ex)
+            //{
 
-            }
+            //    MessageBox.Show(ex.Message);
+
+            //}
         }
 
         private void 清空ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -240,16 +254,12 @@ namespace SSMS
 
         private void 保存ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("受影响行数: "+ DBHelper.UpdateToDatabase(cmbTable.Text, (DataTable)dataGridView1.DataSource));
 
         }
 
         private void 删除ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            foreach (DataGridViewRow‎ row in dataGridView1.SelectedRows)
-            {
-                dataGridView1.Rows.Remove(row);
-            }
+
 
 
         }
@@ -625,10 +635,46 @@ SELECT COLUMN_NAME 列名,DATA_TYPE 数据类型,CHARACTER_MAXIMUM_LENGTH 最大
                 {
 
                     index -= 1;
-                
+
                 }
             }
         }
 
+        private void 保存ToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 添加数据ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DataGridView dataGridView1 = (DataGridView)(tabControl1.SelectedTab.Controls.Find("dataGridView1", true)[0]);
+
+            dataGridView1.FirstDisplayedScrollingRowIndex = dataGridView1.Rows.Count - 1;
+            dataGridView1.ClearSelection();
+            dataGridView1.Rows[dataGridView1.Rows.Count - 1].Selected = true;
+        }
+
+        private void 删除所选ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DataGridView dataGridView1 = (DataGridView)(tabControl1.SelectedTab.Controls.Find("dataGridView1", true)[0]);
+
+            foreach (DataGridViewRow‎ row in dataGridView1.SelectedRows)
+            {
+                dataGridView1.Rows.Remove(row);
+            }
+        }
+
+        private void 更新到数据库ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            statusStrip1.Items.Clear();
+            statusStrip1.Items.Add("   AffectedRowCount: " + DBHelper.UpdateToDatabase(cmbTable.Text, (DataTable)dataGridView1.DataSource) + "");
+        }
+
+        private void 全选ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DataGridView dataGridView1 = (DataGridView)(tabControl1.SelectedTab.Controls.Find("dataGridView1", true)[0]);
+            dataGridView1.SelectAll();
+        }
     }
 }
