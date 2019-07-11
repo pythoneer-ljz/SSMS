@@ -221,6 +221,8 @@ namespace SSMS
 
         private void 清空ToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            TextBox txtSQL = (TextBox)(tabControl1.SelectedTab.Controls.Find("txtSQL", true)[0]);
+
             //if (MessageBox.Show("是否清空?","清空",MessageBoxButtons.YesNo)==DialogResult.Yes)
             txtSQL.Text = "";
         }
@@ -252,6 +254,8 @@ namespace SSMS
 
         private void 创建数据库ToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            TextBox txtSQL = (TextBox)(tabControl1.SelectedTab.Controls.Find("txtSQL", true)[0]);
+
             txtSQL.Text += @"--drop database MyDatabase
 
 create database MyDatabase
@@ -300,6 +304,8 @@ filegrowth = 5mb                    --超过默认值后自动再扩容5mb
 
         private void 创建表ToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            TextBox txtSQL = (TextBox)(tabControl1.SelectedTab.Controls.Find("txtSQL", true)[0]);
+
             txtSQL.Text += @"use MyDatabase
 
 --drop table Table_1

@@ -48,16 +48,16 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.执行F5ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.清空ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.保存ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.保存ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.删除ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.实体类ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.清空ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.插入ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.创建数据库ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.创建表ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.保存ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.保存ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.删除ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.实体类ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.新建查询窗口ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -290,8 +290,8 @@
             this.执行F5ToolStripMenuItem,
             this.清空ToolStripMenuItem,
             this.保存ToolStripMenuItem,
-            this.实体类ToolStripMenuItem,
-            this.新建查询窗口ToolStripMenuItem});
+            this.新建查询窗口ToolStripMenuItem,
+            this.实体类ToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(8, 2, 0, 2);
@@ -317,47 +317,6 @@
             this.清空ToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.R)));
             this.清空ToolStripMenuItem.Size = new System.Drawing.Size(51, 24);
             this.清空ToolStripMenuItem.Text = "编辑";
-            // 
-            // 保存ToolStripMenuItem
-            // 
-            this.保存ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.保存ToolStripMenuItem1,
-            this.删除ToolStripMenuItem1});
-            this.保存ToolStripMenuItem.Name = "保存ToolStripMenuItem";
-            this.保存ToolStripMenuItem.Size = new System.Drawing.Size(81, 24);
-            this.保存ToolStripMenuItem.Text = "数据表格";
-            // 
-            // 保存ToolStripMenuItem1
-            // 
-            this.保存ToolStripMenuItem1.Name = "保存ToolStripMenuItem1";
-            this.保存ToolStripMenuItem1.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D)));
-            this.保存ToolStripMenuItem1.Size = new System.Drawing.Size(216, 26);
-            this.保存ToolStripMenuItem1.Text = "删除选中行";
-            this.保存ToolStripMenuItem1.Click += new System.EventHandler(this.删除ToolStripMenuItem_Click);
-            // 
-            // 删除ToolStripMenuItem1
-            // 
-            this.删除ToolStripMenuItem1.Name = "删除ToolStripMenuItem1";
-            this.删除ToolStripMenuItem1.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.删除ToolStripMenuItem1.Size = new System.Drawing.Size(229, 26);
-            this.删除ToolStripMenuItem1.Text = "更新到数据库";
-            this.删除ToolStripMenuItem1.Click += new System.EventHandler(this.保存ToolStripMenuItem_Click);
-            // 
-            // 实体类ToolStripMenuItem
-            // 
-            this.实体类ToolStripMenuItem.Name = "实体类ToolStripMenuItem";
-            this.实体类ToolStripMenuItem.Size = new System.Drawing.Size(96, 24);
-            this.实体类ToolStripMenuItem.Text = "保存实体类";
-            this.实体类ToolStripMenuItem.Click += new System.EventHandler(this.实体类ToolStripMenuItem_Click);
-            // 
-            // statusStrip1
-            // 
-            this.statusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.statusStrip1.Location = new System.Drawing.Point(0, 680);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1045, 22);
-            this.statusStrip1.TabIndex = 4;
-            this.statusStrip1.Text = "statusStrip1";
             // 
             // 清空ToolStripMenuItem1
             // 
@@ -390,6 +349,38 @@
             this.创建表ToolStripMenuItem1.Text = "建表";
             this.创建表ToolStripMenuItem1.Click += new System.EventHandler(this.创建表ToolStripMenuItem_Click);
             // 
+            // 保存ToolStripMenuItem
+            // 
+            this.保存ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.保存ToolStripMenuItem1,
+            this.删除ToolStripMenuItem1});
+            this.保存ToolStripMenuItem.Name = "保存ToolStripMenuItem";
+            this.保存ToolStripMenuItem.Size = new System.Drawing.Size(81, 24);
+            this.保存ToolStripMenuItem.Text = "查询结果";
+            // 
+            // 保存ToolStripMenuItem1
+            // 
+            this.保存ToolStripMenuItem1.Name = "保存ToolStripMenuItem1";
+            this.保存ToolStripMenuItem1.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D)));
+            this.保存ToolStripMenuItem1.Size = new System.Drawing.Size(229, 26);
+            this.保存ToolStripMenuItem1.Text = "删除选中行";
+            this.保存ToolStripMenuItem1.Click += new System.EventHandler(this.删除ToolStripMenuItem_Click);
+            // 
+            // 删除ToolStripMenuItem1
+            // 
+            this.删除ToolStripMenuItem1.Name = "删除ToolStripMenuItem1";
+            this.删除ToolStripMenuItem1.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
+            this.删除ToolStripMenuItem1.Size = new System.Drawing.Size(229, 26);
+            this.删除ToolStripMenuItem1.Text = "更新到数据库";
+            this.删除ToolStripMenuItem1.Click += new System.EventHandler(this.保存ToolStripMenuItem_Click);
+            // 
+            // 实体类ToolStripMenuItem
+            // 
+            this.实体类ToolStripMenuItem.Name = "实体类ToolStripMenuItem";
+            this.实体类ToolStripMenuItem.Size = new System.Drawing.Size(96, 24);
+            this.实体类ToolStripMenuItem.Text = "保存实体类";
+            this.实体类ToolStripMenuItem.Click += new System.EventHandler(this.实体类ToolStripMenuItem_Click);
+            // 
             // 新建查询窗口ToolStripMenuItem
             // 
             this.新建查询窗口ToolStripMenuItem.Name = "新建查询窗口ToolStripMenuItem";
@@ -397,6 +388,15 @@
             this.新建查询窗口ToolStripMenuItem.Size = new System.Drawing.Size(81, 24);
             this.新建查询窗口ToolStripMenuItem.Text = "新建查询";
             this.新建查询窗口ToolStripMenuItem.Click += new System.EventHandler(this.新建查询窗口ToolStripMenuItem_Click);
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 680);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(1045, 22);
+            this.statusStrip1.TabIndex = 4;
+            this.statusStrip1.Text = "statusStrip1";
             // 
             // Form1
             // 
