@@ -242,6 +242,10 @@ namespace SSMS
             //    MessageBox.Show(ex.Message);
 
             //}
+
+            //statusStrip1.Items.Clear();
+          //  statusStrip1.Items.Add("   执行时间: "+DateTime.Now.ToLocalTime());
+
         }
 
         private void 清空ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -307,7 +311,7 @@ log on --配置日志文件的选项
 
 (
 
-name = 'MyDatabase2_log',           --日志文件的逻辑名称
+name = 'MyDatabase_log',           --日志文件的逻辑名称
 
 
 filename = 'D:\MyDatabase_log.ldf', --日志文件的实际保存路径
