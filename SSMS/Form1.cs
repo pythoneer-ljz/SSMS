@@ -680,5 +680,28 @@ SELECT COLUMN_NAME 列名,DATA_TYPE 数据类型,CHARACTER_MAXIMUM_LENGTH 最大
             DataGridView dataGridView1 = (DataGridView)(tabControl1.SelectedTab.Controls.Find("dataGridView1", true)[0]);
             dataGridView1.SelectAll();
         }
+
+        private void 关于ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form form = new Form();
+            form.Text = "关于软件";
+            form.Size = new Size(200, 133);
+            form.FormBorderStyle = FormBorderStyle.FixedSingle;
+            form.StartPosition = FormStartPosition.CenterParent;
+
+            Label label1 = new Label();
+            label1.AutoSize = true;
+            label1.Text = @"SSMS 1.0 Alpha
+
+
+作者企鹅：2267719005
+
+个人主页：http://3ghh.cn";
+            label1.Location = new Point(9, 14);
+
+            form.Controls.Add(label1);
+
+            form.ShowDialog();
+        }
     }
 }

@@ -65,6 +65,7 @@
             this.新建查询窗口ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.实体类ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.关于ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -325,7 +326,8 @@
             this.清空ToolStripMenuItem,
             this.插入ToolStripMenuItem1,
             this.新建查询窗口ToolStripMenuItem,
-            this.实体类ToolStripMenuItem});
+            this.实体类ToolStripMenuItem,
+            this.关于ToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(784, 25);
@@ -439,6 +441,13 @@
             this.statusStrip1.TabIndex = 4;
             this.statusStrip1.Text = "statusStrip1";
             // 
+            // 关于ToolStripMenuItem
+            // 
+            this.关于ToolStripMenuItem.Name = "关于ToolStripMenuItem";
+            this.关于ToolStripMenuItem.Size = new System.Drawing.Size(44, 21);
+            this.关于ToolStripMenuItem.Text = "关于";
+            this.关于ToolStripMenuItem.Click += new System.EventHandler(this.关于ToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -509,6 +518,7 @@
         private System.Windows.Forms.ToolStripMenuItem 删除所选ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 更新到数据库ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 全选ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 关于ToolStripMenuItem;
     }
 }
 
