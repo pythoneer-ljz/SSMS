@@ -5,7 +5,6 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.IO;
-using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
@@ -13,18 +12,21 @@ using System.Threading;
 
 namespace SSMS
 {
-    public partial class Form1 : Form
+    public partial class FormHome : Form
     {
 
         public string tableName;
+        public DBHelper dBHelper;
 
-        public Form1()
+        public FormHome()
         {
             InitializeComponent();
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            dBHelper = new DBHelper();
+
             if (Program.args.Length == 1)
             {
                 string text = File.ReadAllText(Program.args[0], Encoding.UTF8);
@@ -51,21 +53,29 @@ namespace SSMS
         private void btnLogin_Click(object sender, EventArgs e)
         {
             string server = txtServer.Text, userID = txtUserID.Text, password = txtPassword.Text;
-            DBHelper.connStr = "Data Source=" + server + ";Initial Catalog=;Persist Security Info=True;User ID=" + userID + ";Password=" + password + ";Connect Timeout=1";
-            DataTable dt = DBHelper.GetDataTable("select name from sysdatabases");
+
+            dBHelper.connStr = "Data Source=" + server + ";Initial Catalog=;User ID=" + userID + ";Password=" + password + "";
+
+            dBHelper.Init();
+
+            //查询数据列表
+            DataTable dt = dBHelper.GetDataTable("select name from sysdatabases");
             cmbDatabase.ValueMember = "name";
             cmbDatabase.DisplayMember = "name";
             cmbDatabase.DataSource = dt;
+
         }
+
 
         private void cmbDatabase_TextChanged(object sender, EventArgs e)
         {
+            
             string database = cmbDatabase.Text;
-            string server = txtServer.Text, userID = txtUserID.Text, password = txtPassword.Text;
-            DBHelper.connStr = "Data Source=" + server + ";Initial Catalog=" + database + ";Persist Security Info=True;User ID=" + userID + ";Password=" + password + ";Connect Timeout=1";
+             string server = txtServer.Text, userID = txtUserID.Text, password = txtPassword.Text;
+            dBHelper.connStr = "Data Source=" + server + ";Initial Catalog=" + database + ";Persist Security Info=True;User ID=" + userID + ";Password=" + password + ";Connect Timeout=1";
+            dBHelper.Init();
 
-
-            DataTable dt = DBHelper.GetDataTable("select name from sysobjects where xtype = 'U'");
+            DataTable dt = dBHelper.GetDataTable("select name from sysobjects where xtype = 'U'");
             if (dt.Rows.Count > 0)
             {
                 cmbTable.ValueMember = "name";
@@ -84,7 +94,7 @@ namespace SSMS
 
             //加载实体类
             string sql = "select column_name,data_type from " + cmbDatabase.Text + ".information_schema.columns where table_name='" + tableName + "'";
-            DataTable dt = DBHelper.GetDataTable(sql);
+            DataTable dt = dBHelper.GetDataTable(sql);
 
             StringBuilder sb = new StringBuilder("public class " + tableName + "\r\n{");
 
@@ -182,7 +192,7 @@ namespace SSMS
                 string[] nums = txtSQL.Text.Split('\n');
 
 
-                dataGridView1.DataSource = DBHelper.GetDataTable(nums[nums.Length - 1]);
+                dataGridView1.DataSource = dBHelper.GetDataTable(nums[nums.Length - 1]);
 
             }
             catch (Exception ex)
@@ -223,8 +233,9 @@ namespace SSMS
 
                     try
                     {
-                        DBHelper.GetDataTable(str);
-
+                        dBHelper.GetDataTable(str);
+                        
+                        Thread.Sleep(1000);
                     }
                     catch (Exception ex)
                     {
@@ -233,7 +244,7 @@ namespace SSMS
                     }
                 }
             }
-            else dataGridView1.DataSource = DBHelper.GetDataTable(sql);
+            else dataGridView1.DataSource = dBHelper.GetDataTable(sql);
 
             //}
             //catch (Exception ex)
@@ -242,6 +253,10 @@ namespace SSMS
             //    MessageBox.Show(ex.Message);
 
             //}
+
+            //statusStrip1.Items.Clear();
+            //  statusStrip1.Items.Add("   执行时间: "+DateTime.Now.ToLocalTime());
+
         }
 
         private void 清空ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -307,7 +322,7 @@ log on --配置日志文件的选项
 
 (
 
-name = 'MyDatabase2_log',           --日志文件的逻辑名称
+name = 'MyDatabase_log',           --日志文件的逻辑名称
 
 
 filename = 'D:\MyDatabase_log.ldf', --日志文件的实际保存路径
@@ -668,13 +683,36 @@ SELECT COLUMN_NAME 列名,DATA_TYPE 数据类型,CHARACTER_MAXIMUM_LENGTH 最大
         {
 
             statusStrip1.Items.Clear();
-            statusStrip1.Items.Add("   AffectedRowCount: " + DBHelper.UpdateToDatabase(cmbTable.Text, (DataTable)dataGridView1.DataSource) + "");
+            statusStrip1.Items.Add("   AffectedRowCount: " + dBHelper.UpdateToDatabase(cmbTable.Text, (DataTable)dataGridView1.DataSource) + "");
         }
 
         private void 全选ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DataGridView dataGridView1 = (DataGridView)(tabControl1.SelectedTab.Controls.Find("dataGridView1", true)[0]);
             dataGridView1.SelectAll();
+        }
+
+        private void 关于ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form form = new Form();
+            form.Text = "关于软件";
+            form.Size = new Size(260, 133);
+            form.FormBorderStyle = FormBorderStyle.FixedSingle;
+            form.StartPosition = FormStartPosition.CenterParent;
+
+            Label label1 = new Label();
+            label1.AutoSize = true;
+            label1.Text = @"SSMS 1.0 Alpha
+
+
+作者企鹅：2267719005
+
+个人主页：http://3ghh.cn";
+            label1.Location = new Point(9, 14);
+
+            form.Controls.Add(label1);
+
+            form.ShowDialog();
         }
     }
 }
