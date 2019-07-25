@@ -17,6 +17,7 @@ namespace SSMS
     {
 
         public string tableName;
+        public DBHelper dBHelper;
 
         public Form1()
         {
@@ -25,6 +26,8 @@ namespace SSMS
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            dBHelper = new DBHelper();
+
             if (Program.args.Length == 1)
             {
                 string text = File.ReadAllText(Program.args[0], Encoding.UTF8);
@@ -51,21 +54,28 @@ namespace SSMS
         private void btnLogin_Click(object sender, EventArgs e)
         {
             string server = txtServer.Text, userID = txtUserID.Text, password = txtPassword.Text;
-            DBHelper.connStr = "Data Source=" + server + ";Initial Catalog=;Persist Security Info=True;User ID=" + userID + ";Password=" + password + ";Connect Timeout=1";
-            DataTable dt = DBHelper.GetDataTable("select name from sysdatabases");
+
+            dBHelper.connStr = "Data Source=" + server + ";Initial Catalog=;User ID=" + userID + ";Password=" + password + "";
+
+            dBHelper.Init();
+
+            //查询数据列表
+            DataTable dt = dBHelper.GetDataTable("select name from sysdatabases");
             cmbDatabase.ValueMember = "name";
             cmbDatabase.DisplayMember = "name";
             cmbDatabase.DataSource = dt;
+
         }
+
 
         private void cmbDatabase_TextChanged(object sender, EventArgs e)
         {
             string database = cmbDatabase.Text;
-            string server = txtServer.Text, userID = txtUserID.Text, password = txtPassword.Text;
-            DBHelper.connStr = "Data Source=" + server + ";Initial Catalog=" + database + ";Persist Security Info=True;User ID=" + userID + ";Password=" + password + ";Connect Timeout=1";
+            // string server = txtServer.Text, userID = txtUserID.Text, password = txtPassword.Text;
+            //   DBHelper.connStr = "Data Source=" + server + ";Initial Catalog=" + database + ";Persist Security Info=True;User ID=" + userID + ";Password=" + password + ";Connect Timeout=1";
 
 
-            DataTable dt = DBHelper.GetDataTable("select name from sysobjects where xtype = 'U'");
+            DataTable dt = dBHelper.GetDataTable("select name from sysobjects where xtype = 'U'");
             if (dt.Rows.Count > 0)
             {
                 cmbTable.ValueMember = "name";
@@ -84,7 +94,7 @@ namespace SSMS
 
             //加载实体类
             string sql = "select column_name,data_type from " + cmbDatabase.Text + ".information_schema.columns where table_name='" + tableName + "'";
-            DataTable dt = DBHelper.GetDataTable(sql);
+            DataTable dt = dBHelper.GetDataTable(sql);
 
             StringBuilder sb = new StringBuilder("public class " + tableName + "\r\n{");
 
@@ -182,7 +192,7 @@ namespace SSMS
                 string[] nums = txtSQL.Text.Split('\n');
 
 
-                dataGridView1.DataSource = DBHelper.GetDataTable(nums[nums.Length - 1]);
+                dataGridView1.DataSource = dBHelper.GetDataTable(nums[nums.Length - 1]);
 
             }
             catch (Exception ex)
@@ -223,7 +233,7 @@ namespace SSMS
 
                     try
                     {
-                        DBHelper.GetDataTable(str);
+                        dBHelper.GetDataTable(str);
 
                     }
                     catch (Exception ex)
@@ -233,7 +243,7 @@ namespace SSMS
                     }
                 }
             }
-            else dataGridView1.DataSource = DBHelper.GetDataTable(sql);
+            else dataGridView1.DataSource = dBHelper.GetDataTable(sql);
 
             //}
             //catch (Exception ex)
@@ -244,7 +254,7 @@ namespace SSMS
             //}
 
             //statusStrip1.Items.Clear();
-          //  statusStrip1.Items.Add("   执行时间: "+DateTime.Now.ToLocalTime());
+            //  statusStrip1.Items.Add("   执行时间: "+DateTime.Now.ToLocalTime());
 
         }
 
@@ -672,7 +682,7 @@ SELECT COLUMN_NAME 列名,DATA_TYPE 数据类型,CHARACTER_MAXIMUM_LENGTH 最大
         {
 
             statusStrip1.Items.Clear();
-            statusStrip1.Items.Add("   AffectedRowCount: " + DBHelper.UpdateToDatabase(cmbTable.Text, (DataTable)dataGridView1.DataSource) + "");
+            statusStrip1.Items.Add("   AffectedRowCount: " + dBHelper.UpdateToDatabase(cmbTable.Text, (DataTable)dataGridView1.DataSource) + "");
         }
 
         private void 全选ToolStripMenuItem_Click(object sender, EventArgs e)

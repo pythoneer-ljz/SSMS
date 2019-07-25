@@ -24,3 +24,5 @@ E:\Project\SSMS\SSMS\obj\Debug\SSMS.csproj.GenerateResource.cache
 E:\Project\SSMS\SSMS\obj\Debug\SSMS.csproj.CoreCompileInputs.cache
 E:\Project\SSMS\SSMS\obj\Debug\SSMS.exe
 E:\Project\SSMS\SSMS\obj\Debug\SSMS.pdb
+E:\LJZ\C#\WinForm\SSMS\SSMS\bin\Debug\SSMS.exe.config
+E:\LJZ\C#\WinForm\SSMS\SSMS\bin\Debug\MySql.Data.dll
