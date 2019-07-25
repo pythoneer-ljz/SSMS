@@ -71,17 +71,10 @@ namespace SSMS
         {
             
             string database = cmbDatabase.Text;
-<<<<<<< HEAD:SSMS/Form1.cs
-            // string server = txtServer.Text, userID = txtUserID.Text, password = txtPassword.Text;
-            //   DBHelper.connStr = "Data Source=" + server + ";Initial Catalog=" + database + ";Persist Security Info=True;User ID=" + userID + ";Password=" + password + ";Connect Timeout=1";
-
-
-=======
              string server = txtServer.Text, userID = txtUserID.Text, password = txtPassword.Text;
             dBHelper.connStr = "Data Source=" + server + ";Initial Catalog=" + database + ";Persist Security Info=True;User ID=" + userID + ";Password=" + password + ";Connect Timeout=1";
             dBHelper.Init();
 
->>>>>>> 74041a15f86dd6afe094464c60c3bd35012e844b:SSMS/FormHome.cs
             DataTable dt = dBHelper.GetDataTable("select name from sysobjects where xtype = 'U'");
             if (dt.Rows.Count > 0)
             {
@@ -241,21 +234,21 @@ namespace SSMS
                     try
                     {
                         dBHelper.GetDataTable(str);
-<<<<<<< HEAD:SSMS/Form1.cs
-
-=======
                         
                         Thread.Sleep(1000);
->>>>>>> 74041a15f86dd6afe094464c60c3bd35012e844b:SSMS/FormHome.cs
                     }
                     catch (Exception ex)
                     {
-
                         MessageBox.Show(ex.Message);
                     }
                 }
             }
             else dataGridView1.DataSource = dBHelper.GetDataTable(sql);
+
+            //重新加载表
+            string table = cmbTable.Text;
+            cmbDatabase_TextChanged(null, null);
+            cmbTable.Text = table;
 
             //}
             //catch (Exception ex)
@@ -274,7 +267,7 @@ namespace SSMS
         {
             TextBox txtSQL = (TextBox)(tabControl1.SelectedTab.Controls.Find("txtSQL", true)[0]);
 
-            //if (MessageBox.Show("是否清空?","清空",MessageBoxButtons.YesNo)==DialogResult.Yes)
+            if (MessageBox.Show("是否清空?","清空",MessageBoxButtons.YesNo)==DialogResult.Yes)
             txtSQL.Text = "";
         }
 
@@ -304,45 +297,35 @@ namespace SSMS
             TextBox txtSQL = (TextBox)(tabControl1.SelectedTab.Controls.Find("txtSQL", true)[0]);
 
             txtSQL.Text += @"
---drop database MyDatabase
+CREATE DATABASE DB
 
-create database MyDatabase
-
-on primary --配置主数据文件的选项
+ON PRIMARY
 
 (
 
-name = 'MyDatabase',                --主数据文件的逻辑名称
+NAME = 'DB',                        --主数据文件的逻辑名称
 
+FILENAME = 'D:\MSSQL\DB.mdf',       --主数据文件的实际保存路径
 
-filename = 'D:\MyDatabase.mdf',     --主数据文件的实际保存路径
+SIZE = 5MB,                         --主文件的初始大小
 
+MAXSIZE = 150MB,                    --最大容量
 
-size = 5MB,                         --主文件的初始大小
-
-
-maxsize = 150MB,                    --最大容量
-
-
-filegrowth = 20 %                   --以20 % 扩容
+FILEGROWTH = 20 %                   --以20 % 扩容
 
 )
 
-
-log on --配置日志文件的选项
+LOG ON
 
 (
 
-name = 'MyDatabase_log',           --日志文件的逻辑名称
+NAME = 'DB_log',                    --日志文件的逻辑名称
 
+FILENAME = 'D:\MSSQL\DB_log.ldf',   --日志文件的实际保存路径
 
-filename = 'D:\MyDatabase_log.ldf', --日志文件的实际保存路径
+SIZE = 5mb,                         --日志文件的初始大小
 
-
-size = 5mb,                         --日志文件的初始大小
-
-
-filegrowth = 5mb                    --超过默认值后自动再扩容5mb
+FILEGROWTH = 5mb                    --超过默认值后自动再扩容5mb
 
 )
 ";
@@ -357,17 +340,15 @@ filegrowth = 5mb                    --超过默认值后自动再扩容5mb
             TextBox txtSQL = (TextBox)(tabControl1.SelectedTab.Controls.Find("txtSQL", true)[0]);
 
             txtSQL.Text += @"
-use MyDatabase
+USE "+cmbDatabase.Text+@"
 
---drop table Table_1
-
-create table Table_1                -- 创建表，设置表中列
+CREATE TABLE Table_1
 
 (
 
-ID int identity(1,1) primary key,   --自增,种子1,增量1  主键
+ID int IDENTITY(1,1) PRIMARY KEY,   --自增,种子1,增量1  主键
 
-Name nvarchar(50) not null          --可变长度，每个字符占用两个字节 最多50个字节
+Name nvarchar(50) NOT NULL          --可变长度，每个字符占用两个字节 最多50个字节
 
 )
 ";
@@ -382,13 +363,12 @@ Name nvarchar(50) not null          --可变长度，每个字符占用两个字
             TextBox txtSQL = (TextBox)(tabControl1.SelectedTab.Controls.Find("txtSQL", true)[0]);
 
             txtSQL.Text += @"
---DROP PROCEDURE 存储过程名
-CREATE PROCEDURE 存储过程名
-@Var1 nvarchar(50),
-@Var2 nvarchar(50)
+CREATE PROCEDURE Procedure_Name
+    @Param1 nvarchar(50),
+    @Param2 nvarchar(50)
 AS
 BEGIN
-	SELECT * FROM Table_1 WHERE name=@Var1
+	SELECT * FROM Table_1 WHERE name=@Param1
 END
 ";
             //光标移动到最后一个字符后面
@@ -402,17 +382,21 @@ END
             TextBox txtSQL = (TextBox)(tabControl1.SelectedTab.Controls.Find("txtSQL", true)[0]);
 
             txtSQL.Text += @"
---新增列
-ALTER TABLE 列名
-ADD 列名 nvarchar(50)
-
---删除列
+--增
 ALTER TABLE " + cmbTable.Text + @"
-DROP COLUMN 列名
+    ADD 
+    ID int IDENTITY(1,1) PRIMARY KEY,   --自增,种子1,增量1  主键
+    Name nvarchar(50) NOT NULL        --可变长度，每个字符占用两个字节 最多50个字节
 
---修改列的数据类型
+--删
 ALTER TABLE " + cmbTable.Text + @"
-ALTER COLUMN 列名 nvarchar(50)
+    DROP COLUMN
+    column_name
+
+--改
+ALTER TABLE " + cmbTable.Text + @"
+    ALTER COLUMN
+    column_name nvarchar(50)
 ";
 
             //光标移动到最后一个字符后面
@@ -482,6 +466,7 @@ SELECT COLUMN_NAME 列名,DATA_TYPE 数据类型,CHARACTER_MAXIMUM_LENGTH 最大
             txtSQL.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             txtSQL.Size = new System.Drawing.Size(997, 219);
             txtSQL.TabIndex = 0;
+            txtSQL.AcceptsTab = true;
             txtSQL.KeyDown += new System.Windows.Forms.KeyEventHandler(txtSQL_KeyDown);
             // 
             // dataGridView1
@@ -550,7 +535,7 @@ SELECT COLUMN_NAME 列名,DATA_TYPE 数据类型,CHARACTER_MAXIMUM_LENGTH 最大
             int columnCount = dataGridView1.ColumnCount;
 
             statusStrip1.Items.Clear();
-            statusStrip1.Items.Add("   RowCount: " + rowCount + "   ColumnCount: " + columnCount + "");
+            statusStrip1.Items.Add("   RowCount: " + --rowCount + "   ColumnCount: " + columnCount + "");
         }
 
         TextBox textBox1;
@@ -707,11 +692,7 @@ SELECT COLUMN_NAME 列名,DATA_TYPE 数据类型,CHARACTER_MAXIMUM_LENGTH 最大
         {
             Form form = new Form();
             form.Text = "关于软件";
-<<<<<<< HEAD:SSMS/Form1.cs
-            form.Size = new Size(200, 133);
-=======
             form.Size = new Size(260, 133);
->>>>>>> 74041a15f86dd6afe094464c60c3bd35012e844b:SSMS/FormHome.cs
             form.FormBorderStyle = FormBorderStyle.FixedSingle;
             form.StartPosition = FormStartPosition.CenterParent;
 

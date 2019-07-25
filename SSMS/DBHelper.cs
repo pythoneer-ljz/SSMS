@@ -69,7 +69,7 @@ namespace SSMS
         public int UpdateToDatabase(string tableName, DataTable dt)
         {
             SqlDataAdapter dap = new SqlDataAdapter("select * from " + tableName, conn);
-            SqlCommandBuilder sqlCommandBuilder = new SqlCommandBuilder(dap);
+            SqlCommandBuilder sqlCommandBuilder =new SqlCommandBuilder(dap);
             return dap.Update(dt);
         }
 
