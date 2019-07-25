@@ -26,3 +26,16 @@ E:\Project\SSMS\SSMS\obj\Debug\SSMS.exe
 E:\Project\SSMS\SSMS\obj\Debug\SSMS.pdb
 E:\LJZ\C#\WinForm\SSMS\SSMS\bin\Debug\SSMS.exe.config
 E:\LJZ\C#\WinForm\SSMS\SSMS\bin\Debug\MySql.Data.dll
+<<<<<<< HEAD
+=======
+E:\SSMS\SSMS\bin\Debug\SSMS.exe.config
+E:\SSMS\SSMS\bin\Debug\SSMS.exe
+E:\SSMS\SSMS\bin\Debug\SSMS.pdb
+E:\SSMS\SSMS\obj\Debug\SSMS.csprojAssemblyReference.cache
+E:\SSMS\SSMS\obj\Debug\SSMS.Form1.resources
+E:\SSMS\SSMS\obj\Debug\SSMS.Properties.Resources.resources
+E:\SSMS\SSMS\obj\Debug\SSMS.csproj.GenerateResource.cache
+E:\SSMS\SSMS\obj\Debug\SSMS.csproj.CoreCompileInputs.cache
+E:\SSMS\SSMS\obj\Debug\SSMS.exe
+E:\SSMS\SSMS\obj\Debug\SSMS.pdb
+>>>>>>> 74041a15f86dd6afe094464c60c3bd35012e844b

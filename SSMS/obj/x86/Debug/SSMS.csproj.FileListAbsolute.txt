@@ -7,3 +7,16 @@ E:\LJZ\C#\WinForm\SSMS\SSMS\obj\x86\Debug\SSMS.exe
 E:\LJZ\C#\WinForm\SSMS\SSMS\obj\x86\Debug\SSMS.pdb
 E:\LJZ\C#\WinForm\SSMS\SSMS\bin\x86\Debug\SSMS.exe.config
 E:\LJZ\C#\WinForm\SSMS\SSMS\obj\x86\Debug\SSMS.csprojResolveAssemblyReference.cache
+<<<<<<< HEAD
+=======
+E:\SSMS\SSMS\bin\x86\Debug\SSMS.exe.config
+E:\SSMS\SSMS\bin\x86\Debug\SSMS.exe
+E:\SSMS\SSMS\bin\x86\Debug\SSMS.pdb
+E:\SSMS\SSMS\obj\x86\Debug\SSMS.Properties.Resources.resources
+E:\SSMS\SSMS\obj\x86\Debug\SSMS.csproj.GenerateResource.cache
+E:\SSMS\SSMS\obj\x86\Debug\SSMS.csproj.CoreCompileInputs.cache
+E:\SSMS\SSMS\obj\x86\Debug\SSMS.exe
+E:\SSMS\SSMS\obj\x86\Debug\SSMS.pdb
+E:\SSMS\SSMS\obj\x86\Debug\SSMS.FormHome.resources
+E:\SSMS\SSMS\obj\x86\Debug\SSMS.csprojAssemblyReference.cache
+>>>>>>> 74041a15f86dd6afe094464c60c3bd35012e844b

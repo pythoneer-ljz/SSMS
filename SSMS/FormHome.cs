@@ -5,7 +5,6 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.IO;
-using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
@@ -13,13 +12,13 @@ using System.Threading;
 
 namespace SSMS
 {
-    public partial class Form1 : Form
+    public partial class FormHome : Form
     {
 
         public string tableName;
         public DBHelper dBHelper;
 
-        public Form1()
+        public FormHome()
         {
             InitializeComponent();
         }
@@ -70,11 +69,19 @@ namespace SSMS
 
         private void cmbDatabase_TextChanged(object sender, EventArgs e)
         {
+            
             string database = cmbDatabase.Text;
+<<<<<<< HEAD:SSMS/Form1.cs
             // string server = txtServer.Text, userID = txtUserID.Text, password = txtPassword.Text;
             //   DBHelper.connStr = "Data Source=" + server + ";Initial Catalog=" + database + ";Persist Security Info=True;User ID=" + userID + ";Password=" + password + ";Connect Timeout=1";
 
 
+=======
+             string server = txtServer.Text, userID = txtUserID.Text, password = txtPassword.Text;
+            dBHelper.connStr = "Data Source=" + server + ";Initial Catalog=" + database + ";Persist Security Info=True;User ID=" + userID + ";Password=" + password + ";Connect Timeout=1";
+            dBHelper.Init();
+
+>>>>>>> 74041a15f86dd6afe094464c60c3bd35012e844b:SSMS/FormHome.cs
             DataTable dt = dBHelper.GetDataTable("select name from sysobjects where xtype = 'U'");
             if (dt.Rows.Count > 0)
             {
@@ -234,7 +241,12 @@ namespace SSMS
                     try
                     {
                         dBHelper.GetDataTable(str);
+<<<<<<< HEAD:SSMS/Form1.cs
 
+=======
+                        
+                        Thread.Sleep(1000);
+>>>>>>> 74041a15f86dd6afe094464c60c3bd35012e844b:SSMS/FormHome.cs
                     }
                     catch (Exception ex)
                     {
@@ -695,7 +707,11 @@ SELECT COLUMN_NAME 列名,DATA_TYPE 数据类型,CHARACTER_MAXIMUM_LENGTH 最大
         {
             Form form = new Form();
             form.Text = "关于软件";
+<<<<<<< HEAD:SSMS/Form1.cs
             form.Size = new Size(200, 133);
+=======
+            form.Size = new Size(260, 133);
+>>>>>>> 74041a15f86dd6afe094464c60c3bd35012e844b:SSMS/FormHome.cs
             form.FormBorderStyle = FormBorderStyle.FixedSingle;
             form.StartPosition = FormStartPosition.CenterParent;
 
