@@ -234,8 +234,7 @@ namespace SSMS
                     try
                     {
                         dBHelper.GetDataTable(str);
-                        
-                        Thread.Sleep(1000);
+
                     }
                     catch (Exception ex)
                     {
