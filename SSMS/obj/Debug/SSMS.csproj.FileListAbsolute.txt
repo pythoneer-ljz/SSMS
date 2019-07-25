@@ -1,9 +1,0 @@
-E:\LJZ\C#\WinForm\SSMS\SSMS\bin\Debug\SSMS.exe.config
-E:\LJZ\C#\WinForm\SSMS\SSMS\bin\Debug\SSMS.exe
-E:\LJZ\C#\WinForm\SSMS\SSMS\bin\Debug\SSMS.pdb
-E:\LJZ\C#\WinForm\SSMS\SSMS\obj\Debug\SSMS.csprojResolveAssemblyReference.cache
-E:\LJZ\C#\WinForm\SSMS\SSMS\obj\Debug\SSMS.FormHome.resources
-E:\LJZ\C#\WinForm\SSMS\SSMS\obj\Debug\SSMS.Properties.Resources.resources
-E:\LJZ\C#\WinForm\SSMS\SSMS\obj\Debug\SSMS.csproj.GenerateResource.Cache
-E:\LJZ\C#\WinForm\SSMS\SSMS\obj\Debug\SSMS.exe
-E:\LJZ\C#\WinForm\SSMS\SSMS\obj\Debug\SSMS.pdb

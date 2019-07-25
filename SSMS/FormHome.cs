@@ -69,9 +69,9 @@ namespace SSMS
 
         private void cmbDatabase_TextChanged(object sender, EventArgs e)
         {
-            
+
             string database = cmbDatabase.Text;
-             string server = txtServer.Text, userID = txtUserID.Text, password = txtPassword.Text;
+            string server = txtServer.Text, userID = txtUserID.Text, password = txtPassword.Text;
             dBHelper.connStr = "Data Source=" + server + ";Initial Catalog=" + database + ";Persist Security Info=True;User ID=" + userID + ";Password=" + password + ";Connect Timeout=1";
             dBHelper.Init();
 
@@ -108,14 +108,6 @@ namespace SSMS
             sb.Append("}");
 
             txtEntityClass.Text = sb.ToString();
-
-            //private int eID;
-            //public int EID
-            //{
-            //    get { return eID; }
-            //    set { eID = value; }
-            //}
-
 
         }
 
@@ -212,8 +204,7 @@ namespace SSMS
         private void 执行F5ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string sql = "";
-            //try
-            //{
+
             TextBox txtSQL = (TextBox)(tabControl1.SelectedTab.Controls.Find("txtSQL", true)[0]);
             DataGridView dataGridView1 = (DataGridView)(tabControl1.SelectedTab.Controls.Find("dataGridView1", true)[0]);
             if (txtSQL.SelectionLength > 0)
@@ -249,16 +240,9 @@ namespace SSMS
             cmbDatabase_TextChanged(null, null);
             cmbTable.Text = table;
 
-            //}
-            //catch (Exception ex)
-            //{
 
-            //    MessageBox.Show(ex.Message);
-
-            //}
-
-            //statusStrip1.Items.Clear();
-            //  statusStrip1.Items.Add("   执行时间: "+DateTime.Now.ToLocalTime());
+            statusStrip1.Items.Clear();
+            statusStrip1.Items.Add("   执行时间: " + DateTime.Now.ToLocalTime());
 
         }
 
@@ -266,8 +250,8 @@ namespace SSMS
         {
             TextBox txtSQL = (TextBox)(tabControl1.SelectedTab.Controls.Find("txtSQL", true)[0]);
 
-            if (MessageBox.Show("是否清空?","清空",MessageBoxButtons.YesNo)==DialogResult.Yes)
-            txtSQL.Text = "";
+            //if (MessageBox.Show("是否清空?", "清空", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                txtSQL.Text = "";
         }
 
         private void 保存ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -339,7 +323,7 @@ FILEGROWTH = 5mb                    --超过默认值后自动再扩容5mb
             TextBox txtSQL = (TextBox)(tabControl1.SelectedTab.Controls.Find("txtSQL", true)[0]);
 
             txtSQL.Text += @"
-USE "+cmbDatabase.Text+@"
+USE " + cmbDatabase.Text + @"
 
 CREATE TABLE Table_1
 
@@ -479,6 +463,7 @@ SELECT COLUMN_NAME 列名,DATA_TYPE 数据类型,CHARACTER_MAXIMUM_LENGTH 最大
             dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             dataGridView1.Size = new System.Drawing.Size(997, 278);
             dataGridView1.TabIndex = 0;
+            dataGridView1.ContextMenuStrip = contextMenuStrip1;
 
             TabPage tabPage1 = new TabPage();
 
