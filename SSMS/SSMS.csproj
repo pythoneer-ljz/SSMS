@@ -102,11 +102,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-<<<<<<< HEAD
-    <None Include="app.config" />
-=======
     <None Include="App.config" />
->>>>>>> 74041a15f86dd6afe094464c60c3bd35012e844b
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
