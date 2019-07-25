@@ -47,11 +47,7 @@ namespace SSMS.Properties {
         }
         
         /// <summary>
-<<<<<<< HEAD
-        ///   使用此强类型资源类，为所有资源查找
-=======
         ///   重写当前线程的 CurrentUICulture 属性
->>>>>>> 74041a15f86dd6afe094464c60c3bd35012e844b
         ///   重写当前线程的 CurrentUICulture 属性。
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
