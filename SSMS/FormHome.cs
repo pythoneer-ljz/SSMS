@@ -52,6 +52,8 @@ namespace SSMS
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
+            try
+            {
             string server = txtServer.Text, userID = txtUserID.Text, password = txtPassword.Text;
 
             dBHelper.connStr = "Data Source=" + server + ";Initial Catalog=;User ID=" + userID + ";Password=" + password + "";
@@ -63,7 +65,11 @@ namespace SSMS
             cmbDatabase.ValueMember = "name";
             cmbDatabase.DisplayMember = "name";
             cmbDatabase.DataSource = dt;
-
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
 
@@ -251,7 +257,7 @@ namespace SSMS
             TextBox txtSQL = (TextBox)(tabControl1.SelectedTab.Controls.Find("txtSQL", true)[0]);
 
             //if (MessageBox.Show("是否清空?", "清空", MessageBoxButtons.YesNo) == DialogResult.Yes)
-                txtSQL.Text = "";
+            txtSQL.Text = "";
         }
 
         private void 保存ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -393,7 +399,7 @@ ALTER TABLE " + cmbTable.Text + @"
             TextBox txtSQL = (TextBox)(tabControl1.SelectedTab.Controls.Find("txtSQL", true)[0]);
 
             txtSQL.Text += @"
-SELECT COLUMN_NAME 列名,DATA_TYPE 数据类型,CHARACTER_MAXIMUM_LENGTH 最大长度,IS_NULLABLE 允许Null值,* FROM " + cmbDatabase.Text + ".information_schema.columns WHERE table_name = '" + cmbTable.Text + @"'
+SELECT COLUMN_NAME 列名,DATA_TYPE 数据类型,CHARACTER_MAXIMUM_LENGTH 最大长度,IS_NULLABLE 允许Null值 FROM " + cmbDatabase.Text + ".information_schema.columns WHERE table_name = '" + cmbTable.Text + @"'
 ";
             //光标移动到最后一个字符后面
             txtSQL.Select(txtSQL.TextLength, 0);
@@ -448,7 +454,7 @@ SELECT COLUMN_NAME 列名,DATA_TYPE 数据类型,CHARACTER_MAXIMUM_LENGTH 最大
             txtSQL.Name = "txtSQL";
             txtSQL.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             txtSQL.Size = new System.Drawing.Size(997, 219);
-            txtSQL.TabIndex = 0;
+            txtSQL.TabIndex = 7;
             txtSQL.AcceptsTab = true;
             txtSQL.KeyDown += new System.Windows.Forms.KeyEventHandler(txtSQL_KeyDown);
             // 
@@ -462,7 +468,7 @@ SELECT COLUMN_NAME 列名,DATA_TYPE 数据类型,CHARACTER_MAXIMUM_LENGTH 最大
             dataGridView1.RowTemplate.Height = 23;
             dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             dataGridView1.Size = new System.Drawing.Size(997, 278);
-            dataGridView1.TabIndex = 0;
+            dataGridView1.TabIndex = 8;
             dataGridView1.ContextMenuStrip = contextMenuStrip1;
 
             TabPage tabPage1 = new TabPage();
@@ -522,14 +528,15 @@ SELECT COLUMN_NAME 列名,DATA_TYPE 数据类型,CHARACTER_MAXIMUM_LENGTH 最大
             statusStrip1.Items.Add("   RowCount: " + --rowCount + "   ColumnCount: " + columnCount + "");
         }
 
-        TextBox textBox1;
 
         private void 查找ToolStripMenuItem_Click(object sender, EventArgs e)
         {
+
             Form form = new Form();
-            form.Text = "查找";
-            form.Size = new Size(397, 133);
-            form.FormBorderStyle = FormBorderStyle.FixedDialog;
+            form.Text = "  查找";
+            form.Size = new Size(406, 90);
+
+            form.FormBorderStyle = FormBorderStyle.FixedToolWindow;
             form.StartPosition = FormStartPosition.CenterParent;
 
             Label label1 = new Label();
@@ -554,50 +561,49 @@ SELECT COLUMN_NAME 列名,DATA_TYPE 数据类型,CHARACTER_MAXIMUM_LENGTH 最大
             button2.Location = new Point(323, 11);
             button2.Size = new Size(60, 21);
             button2.Text = "下一个";
-            button1.Click += new EventHandler(btnNext_Click);
-
+            button2.Click += new EventHandler(btnNext_Click);
 
             form.Controls.Add(label1);
             form.Controls.Add(textBox1);
             form.Controls.Add(button1);
-            form.Controls.Add(button2);
 
+
+            form.StartPosition = FormStartPosition.CenterScreen;
+            form.TopMost = true;
             form.Show();
         }
 
-        MatchCollection matches;
 
-        int index = 0;
+
         private void btnNext_Click(object sender, EventArgs e)
 
         {
+            //查找窗体对象
+            Form form = ((Button)sender).FindForm();
 
-            if (matches.Count > 0 && index < matches.Count)
+            //关键字
+            string word = ((TextBox)form.Controls.Find("txtWord", true)[0]).Text;
 
+            TextBox txtSQL = (TextBox)(tabControl1.SelectedTab.Controls.Find("txtSQL", true)[0]);
+            string sql = txtSQL.Text;
+            try
             {
 
-                Match match = matches[index];
+                int index = sql.IndexOf(word, txtSQL.SelectionStart + 1);
 
-                int currentPos = match.Index;
-
-                this.textBox1.Select(currentPos, this.txtSQL.Text.Length);
-
-                if (index == matches.Count - 1)
-                {
-
-                    MessageBox.Show("end");
-
-                }
-
-                else
-
-                {
-
-                    index += 1;
-
-                }
+                txtSQL.Select(index, word.Length);
 
             }
+            catch (Exception)
+            {
+                MessageBox.Show("找不到 " + word);
+
+            }
+
+            Focus();
+
+
+
 
         }
 
@@ -607,32 +613,29 @@ SELECT COLUMN_NAME 列名,DATA_TYPE 数据类型,CHARACTER_MAXIMUM_LENGTH 最大
 
         {
 
-            if (matches.Count > 0 && index >= 0)
+            //查找窗体对象
+            Form form = ((Button)sender).FindForm();
 
+            //关键字
+            string word = ((TextBox)form.Controls.Find("txtWord", true)[0]).Text;
+
+            TextBox txtSQL = (TextBox)(tabControl1.SelectedTab.Controls.Find("txtSQL", true)[0]);
+            string sql = txtSQL.Text;
+            try
             {
+                int index = sql.LastIndexOf(word, txtSQL.SelectionStart - 1);
 
-                Match match = matches[index];
+                txtSQL.Select(index, word.Length);
 
-                int currentPos = match.Index;
-
-                this.textBox1.Select(currentPos, this.textBox1.Text.Length);
-
-                if (index == 0)
-
-                {
-
-                    MessageBox.Show("start");
-
-                }
-
-                else
-
-                {
-
-                    index -= 1;
-
-                }
             }
+            catch (Exception)
+            {
+                MessageBox.Show("找不到 " + word);
+
+            }
+            Focus();
+
+
         }
 
         private void 保存ToolStripMenuItem_Click_1(object sender, EventArgs e)
@@ -675,9 +678,9 @@ SELECT COLUMN_NAME 列名,DATA_TYPE 数据类型,CHARACTER_MAXIMUM_LENGTH 最大
         private void 关于ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Form form = new Form();
-            form.Text = "关于软件";
-            form.Size = new Size(260, 133);
-            form.FormBorderStyle = FormBorderStyle.FixedSingle;
+            form.Text = "  关于软件";
+            form.Size = new Size(270, 133);
+            form.FormBorderStyle = FormBorderStyle.FixedToolWindow;
             form.StartPosition = FormStartPosition.CenterParent;
 
             Label label1 = new Label();

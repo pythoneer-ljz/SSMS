@@ -6,3 +6,4 @@ E:\Project\SSMS\SSMS\obj\x86\Debug\SSMS.csproj.GenerateResource.cache
 E:\Project\SSMS\SSMS\obj\x86\Debug\SSMS.csproj.CoreCompileInputs.cache
 E:\Project\SSMS\SSMS\obj\x86\Debug\SSMS.exe
 E:\Project\SSMS\SSMS\obj\x86\Debug\SSMS.pdb
+E:\Project\SSMS\SSMS\obj\x86\Debug\SSMS.csprojAssemblyReference.cache

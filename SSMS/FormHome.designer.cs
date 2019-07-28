@@ -45,7 +45,6 @@
             this.txtPassword = new System.Windows.Forms.TextBox();
             this.txtUserID = new System.Windows.Forms.TextBox();
             this.txtServer = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.cmbTable = new System.Windows.Forms.ComboBox();
             this.cmbDatabase = new System.Windows.Forms.ComboBox();
@@ -112,7 +111,7 @@
             this.txtSQL.Name = "txtSQL";
             this.txtSQL.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.txtSQL.Size = new System.Drawing.Size(997, 291);
-            this.txtSQL.TabIndex = 0;
+            this.txtSQL.TabIndex = 7;
             this.txtSQL.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSQL_KeyDown);
             // 
             // dataGridView1
@@ -127,7 +126,7 @@
             this.dataGridView1.RowTemplate.Height = 23;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(997, 206);
-            this.dataGridView1.TabIndex = 0;
+            this.dataGridView1.TabIndex = 8;
             this.dataGridView1.DataSourceChanged += new System.EventHandler(this.dataGridView1_DataSourceChanged_1);
             // 
             // contextMenuStrip1
@@ -229,7 +228,6 @@
             this.groupBox1.Controls.Add(this.txtPassword);
             this.groupBox1.Controls.Add(this.txtUserID);
             this.groupBox1.Controls.Add(this.txtServer);
-            this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.cmbTable);
             this.groupBox1.Controls.Add(this.cmbDatabase);
@@ -250,7 +248,7 @@
             this.txtPassword.Margin = new System.Windows.Forms.Padding(4);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(104, 25);
-            this.txtPassword.TabIndex = 5;
+            this.txtPassword.TabIndex = 2;
             // 
             // txtUserID
             // 
@@ -258,7 +256,7 @@
             this.txtUserID.Margin = new System.Windows.Forms.Padding(4);
             this.txtUserID.Name = "txtUserID";
             this.txtUserID.Size = new System.Drawing.Size(115, 25);
-            this.txtUserID.TabIndex = 5;
+            this.txtUserID.TabIndex = 1;
             this.txtUserID.Text = "sa";
             // 
             // txtServer
@@ -267,25 +265,13 @@
             this.txtServer.Margin = new System.Windows.Forms.Padding(4);
             this.txtServer.Name = "txtServer";
             this.txtServer.Size = new System.Drawing.Size(77, 25);
-            this.txtServer.TabIndex = 5;
-            this.txtServer.Text = "(local)";
-            // 
-            // label2
-            // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(713, 36);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(22, 15);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "表";
+            this.txtServer.TabIndex = 0;
             // 
             // label1
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(496, 35);
+            this.label1.Location = new System.Drawing.Point(546, 35);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(22, 15);
@@ -300,7 +286,7 @@
             this.cmbTable.Margin = new System.Windows.Forms.Padding(4);
             this.cmbTable.Name = "cmbTable";
             this.cmbTable.Size = new System.Drawing.Size(160, 23);
-            this.cmbTable.TabIndex = 3;
+            this.cmbTable.TabIndex = 5;
             this.cmbTable.TextChanged += new System.EventHandler(this.cmbTable_TextChanged);
             // 
             // cmbDatabase
@@ -308,11 +294,11 @@
             this.cmbDatabase.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cmbDatabase.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbDatabase.FormattingEnabled = true;
-            this.cmbDatabase.Location = new System.Drawing.Point(527, 31);
+            this.cmbDatabase.Location = new System.Drawing.Point(576, 31);
             this.cmbDatabase.Margin = new System.Windows.Forms.Padding(4);
             this.cmbDatabase.Name = "cmbDatabase";
             this.cmbDatabase.Size = new System.Drawing.Size(160, 23);
-            this.cmbDatabase.TabIndex = 3;
+            this.cmbDatabase.TabIndex = 4;
             this.cmbDatabase.TextChanged += new System.EventHandler(this.cmbDatabase_TextChanged);
             // 
             // btnQuery
@@ -322,7 +308,7 @@
             this.btnQuery.Margin = new System.Windows.Forms.Padding(4);
             this.btnQuery.Name = "btnQuery";
             this.btnQuery.Size = new System.Drawing.Size(79, 29);
-            this.btnQuery.TabIndex = 2;
+            this.btnQuery.TabIndex = 6;
             this.btnQuery.Text = "查询";
             this.btnQuery.UseVisualStyleBackColor = true;
             this.btnQuery.Click += new System.EventHandler(this.btnQuery_Click);
@@ -333,7 +319,7 @@
             this.btnLogin.Margin = new System.Windows.Forms.Padding(4);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(79, 29);
-            this.btnLogin.TabIndex = 2;
+            this.btnLogin.TabIndex = 3;
             this.btnLogin.Text = "登录";
             this.btnLogin.UseVisualStyleBackColor = true;
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
@@ -359,7 +345,7 @@
             this.执行F5ToolStripMenuItem.Name = "执行F5ToolStripMenuItem";
             this.执行F5ToolStripMenuItem.ShortcutKeyDisplayString = "";
             this.执行F5ToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F5;
-            this.执行F5ToolStripMenuItem.Size = new System.Drawing.Size(80, 24);
+            this.执行F5ToolStripMenuItem.Size = new System.Drawing.Size(80, 26);
             this.执行F5ToolStripMenuItem.Text = "执行(F5)";
             this.执行F5ToolStripMenuItem.Click += new System.EventHandler(this.执行F5ToolStripMenuItem_Click);
             // 
@@ -370,14 +356,14 @@
             this.查找ToolStripMenuItem});
             this.清空ToolStripMenuItem.Name = "清空ToolStripMenuItem";
             this.清空ToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.R)));
-            this.清空ToolStripMenuItem.Size = new System.Drawing.Size(71, 24);
+            this.清空ToolStripMenuItem.Size = new System.Drawing.Size(71, 26);
             this.清空ToolStripMenuItem.Text = "编辑(&E)";
             // 
             // 清空ToolStripMenuItem1
             // 
             this.清空ToolStripMenuItem1.Name = "清空ToolStripMenuItem1";
             this.清空ToolStripMenuItem1.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.R)));
-            this.清空ToolStripMenuItem1.Size = new System.Drawing.Size(178, 26);
+            this.清空ToolStripMenuItem1.Size = new System.Drawing.Size(224, 26);
             this.清空ToolStripMenuItem1.Text = "清空";
             this.清空ToolStripMenuItem1.Click += new System.EventHandler(this.清空ToolStripMenuItem_Click);
             // 
@@ -385,7 +371,7 @@
             // 
             this.查找ToolStripMenuItem.Name = "查找ToolStripMenuItem";
             this.查找ToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F)));
-            this.查找ToolStripMenuItem.Size = new System.Drawing.Size(178, 26);
+            this.查找ToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.查找ToolStripMenuItem.Text = "查找";
             this.查找ToolStripMenuItem.Click += new System.EventHandler(this.查找ToolStripMenuItem_Click);
             // 
@@ -404,22 +390,22 @@
             // 创建数据库ToolStripMenuItem
             // 
             this.创建数据库ToolStripMenuItem.Name = "创建数据库ToolStripMenuItem";
-            this.创建数据库ToolStripMenuItem.Size = new System.Drawing.Size(182, 26);
-            this.创建数据库ToolStripMenuItem.Text = "创建数据库";
+            this.创建数据库ToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.创建数据库ToolStripMenuItem.Text = "建库";
             this.创建数据库ToolStripMenuItem.Click += new System.EventHandler(this.创建数据库ToolStripMenuItem_Click);
             // 
             // 创建表ToolStripMenuItem
             // 
             this.创建表ToolStripMenuItem.Name = "创建表ToolStripMenuItem";
-            this.创建表ToolStripMenuItem.Size = new System.Drawing.Size(182, 26);
-            this.创建表ToolStripMenuItem.Text = "创建表";
+            this.创建表ToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.创建表ToolStripMenuItem.Text = "建表";
             this.创建表ToolStripMenuItem.Click += new System.EventHandler(this.创建表ToolStripMenuItem_Click);
             // 
             // 创建存储过程ToolStripMenuItem
             // 
             this.创建存储过程ToolStripMenuItem.Name = "创建存储过程ToolStripMenuItem";
-            this.创建存储过程ToolStripMenuItem.Size = new System.Drawing.Size(182, 26);
-            this.创建存储过程ToolStripMenuItem.Text = "创建存储过程";
+            this.创建存储过程ToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.创建存储过程ToolStripMenuItem.Text = "建存储过程";
             this.创建存储过程ToolStripMenuItem.Click += new System.EventHandler(this.创建存储过程ToolStripMenuItem_Click);
             // 
             // 增删改列ToolStripMenuItem
@@ -440,21 +426,21 @@
             // 
             this.新建查询窗口ToolStripMenuItem.Name = "新建查询窗口ToolStripMenuItem";
             this.新建查询窗口ToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.T)));
-            this.新建查询窗口ToolStripMenuItem.Size = new System.Drawing.Size(83, 24);
+            this.新建查询窗口ToolStripMenuItem.Size = new System.Drawing.Size(83, 26);
             this.新建查询窗口ToolStripMenuItem.Text = "新建查询";
             this.新建查询窗口ToolStripMenuItem.Click += new System.EventHandler(this.新建查询窗口ToolStripMenuItem_Click);
             // 
             // 实体类ToolStripMenuItem
             // 
             this.实体类ToolStripMenuItem.Name = "实体类ToolStripMenuItem";
-            this.实体类ToolStripMenuItem.Size = new System.Drawing.Size(98, 24);
+            this.实体类ToolStripMenuItem.Size = new System.Drawing.Size(98, 26);
             this.实体类ToolStripMenuItem.Text = "保存实体类";
             this.实体类ToolStripMenuItem.Click += new System.EventHandler(this.实体类ToolStripMenuItem_Click);
             // 
             // 关于ToolStripMenuItem
             // 
             this.关于ToolStripMenuItem.Name = "关于ToolStripMenuItem";
-            this.关于ToolStripMenuItem.Size = new System.Drawing.Size(53, 24);
+            this.关于ToolStripMenuItem.Size = new System.Drawing.Size(53, 26);
             this.关于ToolStripMenuItem.Text = "关于";
             this.关于ToolStripMenuItem.Click += new System.EventHandler(this.关于ToolStripMenuItem_Click);
             // 
@@ -470,6 +456,7 @@
             // 
             // FormHome
             // 
+            this.AcceptButton = this.btnLogin;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1045, 702);
@@ -513,7 +500,6 @@
         private System.Windows.Forms.ComboBox cmbDatabase;
         private System.Windows.Forms.Button btnLogin;
         private System.Windows.Forms.ComboBox cmbTable;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtEntityClass;
         private System.Windows.Forms.Button btnQuery;
