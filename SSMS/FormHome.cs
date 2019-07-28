@@ -566,6 +566,7 @@ SELECT COLUMN_NAME 列名,DATA_TYPE 数据类型,CHARACTER_MAXIMUM_LENGTH 最大
             form.Controls.Add(label1);
             form.Controls.Add(textBox1);
             form.Controls.Add(button1);
+            form.Controls.Add(button2);
 
 
             form.StartPosition = FormStartPosition.CenterScreen;
