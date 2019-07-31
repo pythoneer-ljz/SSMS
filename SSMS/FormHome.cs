@@ -70,13 +70,23 @@ namespace SSMS
                 cmbDatabase.DataSource = dt;
 
                 cmbDatabase.Enabled =
-                    cmbTable.Enabled =
-                    btnQuery.Enabled = true;
+                cmbTable.Enabled =
+                btnQuery.Enabled =
+                执行F5ToolStripMenuItem.Enabled =
+                contextMenuStrip1.Enabled=
+                    true;
 
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+
+                cmbDatabase.Enabled =
+                    cmbTable.Enabled =
+                    btnQuery.Enabled =
+                    执行F5ToolStripMenuItem.Enabled =
+                contextMenuStrip1.Enabled =
+                    false;
             }
         }
 
@@ -250,7 +260,18 @@ namespace SSMS
                     }
                 }
             }
-            else dataGridView1.DataSource = dBHelper.GetDataTable(sql);
+            else
+            {
+                try
+                {
+                    dataGridView1.DataSource = dBHelper.GetDataTable(sql);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    return;
+                }
+            }
 
             //重新加载表
             string table = cmbTable.Text;
