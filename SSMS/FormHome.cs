@@ -594,6 +594,8 @@ SELECT COLUMN_NAME 列名,DATA_TYPE 数据类型,CHARACTER_MAXIMUM_LENGTH 最大
 
                 txtSQL.Select(index, word.Length);
 
+                //滚到光标处
+                txtSQL.ScrollToCaret();
             }
             catch (Exception)
             {
@@ -627,6 +629,9 @@ SELECT COLUMN_NAME 列名,DATA_TYPE 数据类型,CHARACTER_MAXIMUM_LENGTH 最大
                 int index = sql.LastIndexOf(word, txtSQL.SelectionStart - 1);
 
                 txtSQL.Select(index, word.Length);
+
+                //滚到光标处
+                txtSQL.ScrollToCaret();
 
             }
             catch (Exception)
