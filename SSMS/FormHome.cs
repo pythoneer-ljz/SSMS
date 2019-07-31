@@ -21,6 +21,8 @@ namespace SSMS
         public FormHome()
         {
             InitializeComponent();
+
+
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -54,17 +56,23 @@ namespace SSMS
         {
             try
             {
-            string server = txtServer.Text, userID = txtUserID.Text, password = txtPassword.Text;
+                string server = txtServer.Text, userID = txtUserID.Text, password = txtPassword.Text;
 
-            dBHelper.connStr = "Data Source=" + server + ";Initial Catalog=;User ID=" + userID + ";Password=" + password + "";
+                dBHelper.connStr = "Data Source=" + server + ";Initial Catalog=;User ID=" + userID + ";Password=" + password + ";Connect Timeout=1";
 
-            dBHelper.Init();
+                dBHelper.Init();
 
-            //查询数据列表
-            DataTable dt = dBHelper.GetDataTable("select name from sysdatabases");
-            cmbDatabase.ValueMember = "name";
-            cmbDatabase.DisplayMember = "name";
-            cmbDatabase.DataSource = dt;
+                //查询数据列表
+                DataTable dt = dBHelper.GetDataTable("select name from sysdatabases");
+
+                cmbDatabase.ValueMember = "name";
+                cmbDatabase.DisplayMember = "name";
+                cmbDatabase.DataSource = dt;
+
+                cmbDatabase.Enabled =
+                    cmbTable.Enabled =
+                    btnQuery.Enabled = true;
+
             }
             catch (Exception ex)
             {
@@ -212,6 +220,9 @@ namespace SSMS
             string sql = "";
 
             TextBox txtSQL = (TextBox)(tabControl1.SelectedTab.Controls.Find("txtSQL", true)[0]);
+
+            if (txtSQL.Text == "") return;
+
             DataGridView dataGridView1 = (DataGridView)(tabControl1.SelectedTab.Controls.Find("dataGridView1", true)[0]);
             if (txtSQL.SelectionLength > 0)
             {
@@ -366,26 +377,47 @@ END
             txtSQL.ScrollToCaret();
         }
 
-        private void 增删改列ToolStripMenuItem_Click(object sender, EventArgs e)
+        private void 新增列ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             TextBox txtSQL = (TextBox)(tabControl1.SelectedTab.Controls.Find("txtSQL", true)[0]);
 
             txtSQL.Text += @"
---增
 ALTER TABLE " + cmbTable.Text + @"
     ADD 
     ID int IDENTITY(1,1) PRIMARY KEY,   --自增,种子1,增量1  主键
-    Name nvarchar(50) NOT NULL        --可变长度，每个字符占用两个字节 最多50个字节
+    Name nvarchar(50) NOT NULL          --可变长度，每个字符占用两个字节 最多50个字节
+";
 
---删
-ALTER TABLE " + cmbTable.Text + @"
-    DROP COLUMN
-    column_name
+            //光标移动到最后一个字符后面
+            txtSQL.Select(txtSQL.TextLength, 0);
+            //滚动到光标处
+            txtSQL.ScrollToCaret();
+        }
 
---改
+        private void 修改列ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            TextBox txtSQL = (TextBox)(tabControl1.SelectedTab.Controls.Find("txtSQL", true)[0]);
+
+            txtSQL.Text += @"
 ALTER TABLE " + cmbTable.Text + @"
     ALTER COLUMN
     column_name nvarchar(50)
+";
+
+            //光标移动到最后一个字符后面
+            txtSQL.Select(txtSQL.TextLength, 0);
+            //滚动到光标处
+            txtSQL.ScrollToCaret();
+        }
+
+        private void 删除列ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            TextBox txtSQL = (TextBox)(tabControl1.SelectedTab.Controls.Find("txtSQL", true)[0]);
+
+            txtSQL.Text += @"
+ALTER TABLE " + cmbTable.Text + @"
+    DROP COLUMN
+    column_name
 ";
 
             //光标移动到最后一个字符后面
@@ -691,7 +723,7 @@ SELECT COLUMN_NAME 列名,DATA_TYPE 数据类型,CHARACTER_MAXIMUM_LENGTH 最大
 
             Label label1 = new Label();
             label1.AutoSize = true;
-            label1.Text = @"SSMS 1.0 Alpha
+            label1.Text = @"SSMS 1.1 Alpha
 
 
 作者企鹅：2267719005
@@ -702,6 +734,36 @@ SELECT COLUMN_NAME 列名,DATA_TYPE 数据类型,CHARACTER_MAXIMUM_LENGTH 最大
             form.Controls.Add(label1);
 
             form.ShowDialog();
+        }
+
+        private void 打开ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+
+                TextBox txtSQL = (TextBox)(tabControl1.SelectedTab.Controls.Find("txtSQL", true)[0]);
+                txtSQL.Text = File.ReadAllText(openFileDialog.FileName, Encoding.UTF8);
+            }
+
+
+
+
+
+        }
+
+        private void 保存ToolStripMenuItem_Click_2(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "SQL 文件(*.sql)|*.sql";
+            saveFileDialog.FileName = "SQLQuery1.sql";
+            saveFileDialog.ShowDialog();
+
+            TextBox txtSQL = (TextBox)(tabControl1.SelectedTab.Controls.Find("txtSQL", true)[0]);
+
+
+            File.WriteAllText(saveFileDialog.FileName, txtSQL.Text, Encoding.UTF8);
         }
     }
 }
