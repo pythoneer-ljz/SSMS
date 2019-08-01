@@ -56,17 +56,38 @@ namespace SSMS
             try
             {
                 string server = txtServer.Text, userID = txtUserID.Text, password = txtPassword.Text;
-
-                dBHelper.connStr = "Data Source=" + server + ";Initial Catalog=;User ID=" + userID + ";Password=" + password + ";Connect Timeout=1";
+                if (txtUserID.Text != "" && txtPassword.Text != "")
+                    dBHelper.connStr = "Data Source=" + server + ";Initial Catalog=;User ID=" + userID + ";Password=" + password + ";Connect Timeout=1";
+                else
+                    dBHelper.connStr = "Data Source=" + server + ";Initial Catalog=;Integrated Security=True;Connect Timeout=1";
 
                 dBHelper.Init();
 
                 //查询数据列表
                 DataTable dt = dBHelper.GetDataTable("select name from sysdatabases");
 
-                cmbDatabase.ValueMember = "name";
-                cmbDatabase.DisplayMember = "name";
-                cmbDatabase.DataSource = dt;
+
+                if (dt.Rows.Count > 0)
+                {
+                    //清理下拉框
+                    cmbDatabase.Items.Clear();
+
+                    //遍历添加表名
+                    foreach (DataRow row in dt.Rows)
+                        cmbDatabase.Items.Add(row["name"].ToString());
+
+                    //默认选中第一个
+                    cmbDatabase.Text = cmbDatabase.Items[0].ToString();
+
+                }
+                else
+                {
+                    cmbDatabase.DataSource = null;
+                }
+
+                //cmbDatabase.ValueMember = "name";
+                //cmbDatabase.DisplayMember = "name";
+                //cmbDatabase.DataSource = dt;
 
                 cmbDatabase.Enabled =
                 cmbTable.Enabled =
@@ -92,15 +113,27 @@ namespace SSMS
         {
             string database = cmbDatabase.Text;
             string server = txtServer.Text, userID = txtUserID.Text, password = txtPassword.Text;
-            dBHelper.connStr = "Data Source=" + server + ";Initial Catalog=" + database + ";Persist Security Info=True;User ID=" + userID + ";Password=" + password + ";Connect Timeout=1";
+            if (txtUserID.Text != "" && txtPassword.Text != "")
+                dBHelper.connStr = "Data Source=" + server + ";Initial Catalog=" + database + ";Persist Security Info=True;User ID=" + userID + ";Password=" + password + ";Connect Timeout=1";
+            else
+                dBHelper.connStr = "Data Source=" + server + ";Initial Catalog=" + database + ";Integrated Security=True;Connect Timeout=1";
+
             dBHelper.Init();
 
             DataTable dt = dBHelper.GetDataTable("select name from sysobjects where xtype = 'U'");
+
             if (dt.Rows.Count > 0)
             {
-                cmbTable.ValueMember = "name";
-                cmbTable.DisplayMember = "name";
-                cmbTable.DataSource = dt;
+                //清理下拉框
+                cmbTable.Items.Clear();
+
+                //遍历添加表名
+                foreach (DataRow row in dt.Rows)
+                    cmbTable.Items.Add(row["name"].ToString());
+
+                //默认选中第一个
+                cmbTable.Text = cmbTable.Items[0].ToString();
+
             }
             else
             {
@@ -288,18 +321,6 @@ namespace SSMS
                 txtSQL.Text = "";
         }
 
-        private void 保存ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void 删除ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-
-
-        }
-
         private void 实体类ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SaveFileDialog saveFileDialog = new SaveFileDialog();
@@ -325,8 +346,8 @@ LOG ON
 (
     NAME = 'DB_log',                    --逻辑名称
     FILENAME = 'D:\MSSQL\DB_log.ldf',   --保存路径
-    SIZE = 5mb,                         --初始大小
-    FILEGROWTH = 5mb                    --文件增长
+    SIZE = 5MB,                         --初始大小
+    FILEGROWTH = 5MB                    --文件增长
 )
 ";
             TextBox txtSQL = (TextBox)(tabControl1.SelectedTab.Controls.Find("txtSQL", true)[0]);
@@ -461,6 +482,25 @@ SELECT COLUMN_NAME 列名,DATA_TYPE 数据类型,CHARACTER_MAXIMUM_LENGTH 最大
             //滚动到光标处
             txtSQL.ScrollToCaret();
         }
+
+        private void 查看ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string text = @"
+select a.name,a.[type],b.[definition] from sys.all_objects a,sys.sql_modules b
+where a.is_ms_shipped=0 and a.object_id = b.object_id and a.[type] in ('P','V','AF')
+order by a.[name] asc
+";
+            TextBox txtSQL = (TextBox)(tabControl1.SelectedTab.Controls.Find("txtSQL", true)[0]);
+            //文本框文本长度
+            int len = txtSQL.Text.Length;
+            //在结尾追加文本
+            txtSQL.Text += text;
+            //选中
+            txtSQL.Select(len, text.Length);
+            //滚动到光标处
+            txtSQL.ScrollToCaret();
+        }
+
 
         private void dataGridView1_DataSourceChanged(object sender, EventArgs e)
         {
@@ -746,7 +786,7 @@ SELECT COLUMN_NAME 列名,DATA_TYPE 数据类型,CHARACTER_MAXIMUM_LENGTH 最大
 
             Label label1 = new Label();
             label1.AutoSize = true;
-            label1.Text = @"SSMS 1.3 Alpha
+            label1.Text = @"SSMS 1.4 Alpha
 
 
 作者企鹅：2267719005
@@ -787,5 +827,7 @@ SELECT COLUMN_NAME 列名,DATA_TYPE 数据类型,CHARACTER_MAXIMUM_LENGTH 最大
 
             File.WriteAllText(saveFileDialog.FileName, txtSQL.Text, Encoding.UTF8);
         }
+
+
     }
 }
