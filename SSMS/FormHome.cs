@@ -22,7 +22,6 @@ namespace SSMS
         {
             InitializeComponent();
 
-
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -73,27 +72,24 @@ namespace SSMS
                 cmbTable.Enabled =
                 btnQuery.Enabled =
                 执行F5ToolStripMenuItem.Enabled =
-                contextMenuStrip1.Enabled=
                     true;
 
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
-
                 cmbDatabase.Enabled =
-                    cmbTable.Enabled =
-                    btnQuery.Enabled =
-                    执行F5ToolStripMenuItem.Enabled =
-                contextMenuStrip1.Enabled =
+                cmbTable.Enabled =
+                btnQuery.Enabled =
+                执行F5ToolStripMenuItem.Enabled =
                     false;
+
+                MessageBox.Show(ex.Message);
             }
         }
 
 
         private void cmbDatabase_TextChanged(object sender, EventArgs e)
         {
-
             string database = cmbDatabase.Text;
             string server = txtServer.Text, userID = txtUserID.Text, password = txtPassword.Text;
             dBHelper.connStr = "Data Source=" + server + ";Initial Catalog=" + database + ";Persist Security Info=True;User ID=" + userID + ";Password=" + password + ";Connect Timeout=1";
@@ -288,8 +284,8 @@ namespace SSMS
         {
             TextBox txtSQL = (TextBox)(tabControl1.SelectedTab.Controls.Find("txtSQL", true)[0]);
 
-            //if (MessageBox.Show("是否清空?", "清空", MessageBoxButtons.YesNo) == DialogResult.Yes)
-            txtSQL.Text = "";
+            if (MessageBox.Show("是否清空?", "清空", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                txtSQL.Text = "";
         }
 
         private void 保存ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -315,75 +311,67 @@ namespace SSMS
 
         private void 创建数据库ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            TextBox txtSQL = (TextBox)(tabControl1.SelectedTab.Controls.Find("txtSQL", true)[0]);
-
-            txtSQL.Text += @"
+            string text = @"
 CREATE DATABASE DB
-
 ON PRIMARY
-
 (
-
-NAME = 'DB',                        --主数据文件的逻辑名称
-
-FILENAME = 'D:\MSSQL\DB.mdf',       --主数据文件的实际保存路径
-
-SIZE = 5MB,                         --主文件的初始大小
-
-MAXSIZE = 150MB,                    --最大容量
-
-FILEGROWTH = 20 %                   --以20 % 扩容
-
+    NAME = 'DB',                        --逻辑名称
+    FILENAME = 'D:\MSSQL\DB.mdf',       --保存路径
+    SIZE = 5MB,                         --初始大小
+    MAXSIZE = 150MB,                    --最大容量
+    FILEGROWTH = 20 %                   --文件增长
 )
-
 LOG ON
-
 (
-
-NAME = 'DB_log',                    --日志文件的逻辑名称
-
-FILENAME = 'D:\MSSQL\DB_log.ldf',   --日志文件的实际保存路径
-
-SIZE = 5mb,                         --日志文件的初始大小
-
-FILEGROWTH = 5mb                    --超过默认值后自动再扩容5mb
-
+    NAME = 'DB_log',                    --逻辑名称
+    FILENAME = 'D:\MSSQL\DB_log.ldf',   --保存路径
+    SIZE = 5mb,                         --初始大小
+    FILEGROWTH = 5mb                    --文件增长
 )
 ";
-            //光标移动到最后一个字符后面
-            txtSQL.Select(txtSQL.TextLength, 0);
+            TextBox txtSQL = (TextBox)(tabControl1.SelectedTab.Controls.Find("txtSQL", true)[0]);
+            //文本框文本长度
+            int len = txtSQL.Text.Length;
+            //在结尾追加文本
+            txtSQL.Text += text;
+            //选中
+            txtSQL.Select(len, text.Length);
             //滚动到光标处
             txtSQL.ScrollToCaret();
         }
 
         private void 创建表ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            TextBox txtSQL = (TextBox)(tabControl1.SelectedTab.Controls.Find("txtSQL", true)[0]);
-
-            txtSQL.Text += @"
+            string text = @"
 USE " + cmbDatabase.Text + @"
 
 CREATE TABLE Table_1
-
 (
-
-ID int IDENTITY(1,1) PRIMARY KEY,   --自增,种子1,增量1  主键
-
-Name nvarchar(50) NOT NULL          --可变长度，每个字符占用两个字节 最多50个字节
-
+    ID int IDENTITY(1,1) PRIMARY KEY,   --自增,种子1,增量1  主键
+    Name nvarchar(100) NOT NULL,        --Unicode编码 每字符占两字节,最多4000
+    Content nvarchar(MAX),              --最多536870912
+    DateTime smalldatetime,             --2000/01/01 00:00:00
+    Date date,                          --2000/01/01
+    Time time,                          --00:00:00
+    Checked bit,                        --允许 0、1 或 NULL
+    Num decimal(8,0)                    --小数点左边8位, 右边0位
 )
 ";
-            //光标移动到最后一个字符后面
-            txtSQL.Select(txtSQL.TextLength, 0);
+            TextBox txtSQL = (TextBox)(tabControl1.SelectedTab.Controls.Find("txtSQL", true)[0]);
+            //文本框文本长度
+            int len = txtSQL.Text.Length;
+            //在结尾追加文本
+            txtSQL.Text += text;
+            //选中
+            txtSQL.Select(len, text.Length);
             //滚动到光标处
             txtSQL.ScrollToCaret();
         }
 
         private void 创建存储过程ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            TextBox txtSQL = (TextBox)(tabControl1.SelectedTab.Controls.Find("txtSQL", true)[0]);
 
-            txtSQL.Text += @"
+            string text = @"
 CREATE PROCEDURE Procedure_Name
     @Param1 nvarchar(50),
     @Param2 nvarchar(50)
@@ -392,70 +380,86 @@ BEGIN
 	SELECT * FROM Table_1 WHERE name=@Param1
 END
 ";
-            //光标移动到最后一个字符后面
-            txtSQL.Select(txtSQL.TextLength, 0);
+            TextBox txtSQL = (TextBox)(tabControl1.SelectedTab.Controls.Find("txtSQL", true)[0]);
+            //文本框文本长度
+            int len = txtSQL.Text.Length;
+            //在结尾追加文本
+            txtSQL.Text += text;
+            //选中
+            txtSQL.Select(len, text.Length);
             //滚动到光标处
             txtSQL.ScrollToCaret();
         }
 
         private void 新增列ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            TextBox txtSQL = (TextBox)(tabControl1.SelectedTab.Controls.Find("txtSQL", true)[0]);
-
-            txtSQL.Text += @"
+            string text = @"
 ALTER TABLE " + cmbTable.Text + @"
     ADD 
     ID int IDENTITY(1,1) PRIMARY KEY,   --自增,种子1,增量1  主键
     Name nvarchar(50) NOT NULL          --可变长度，每个字符占用两个字节 最多50个字节
 ";
-
-            //光标移动到最后一个字符后面
-            txtSQL.Select(txtSQL.TextLength, 0);
+            TextBox txtSQL = (TextBox)(tabControl1.SelectedTab.Controls.Find("txtSQL", true)[0]);
+            //文本框文本长度
+            int len = txtSQL.Text.Length;
+            //在结尾追加文本
+            txtSQL.Text += text;
+            //选中
+            txtSQL.Select(len, text.Length);
             //滚动到光标处
             txtSQL.ScrollToCaret();
         }
 
         private void 修改列ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            TextBox txtSQL = (TextBox)(tabControl1.SelectedTab.Controls.Find("txtSQL", true)[0]);
 
-            txtSQL.Text += @"
+            string text = @"
 ALTER TABLE " + cmbTable.Text + @"
     ALTER COLUMN
     column_name nvarchar(50)
 ";
-
-            //光标移动到最后一个字符后面
-            txtSQL.Select(txtSQL.TextLength, 0);
+            TextBox txtSQL = (TextBox)(tabControl1.SelectedTab.Controls.Find("txtSQL", true)[0]);
+            //文本框文本长度
+            int len = txtSQL.Text.Length;
+            //在结尾追加文本
+            txtSQL.Text += text;
+            //选中
+            txtSQL.Select(len, text.Length);
             //滚动到光标处
             txtSQL.ScrollToCaret();
         }
 
         private void 删除列ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            TextBox txtSQL = (TextBox)(tabControl1.SelectedTab.Controls.Find("txtSQL", true)[0]);
-
-            txtSQL.Text += @"
+            string text = @"
 ALTER TABLE " + cmbTable.Text + @"
     DROP COLUMN
     column_name
 ";
-
-            //光标移动到最后一个字符后面
-            txtSQL.Select(txtSQL.TextLength, 0);
+            TextBox txtSQL = (TextBox)(tabControl1.SelectedTab.Controls.Find("txtSQL", true)[0]);
+            //文本框文本长度
+            int len = txtSQL.Text.Length;
+            //在结尾追加文本
+            txtSQL.Text += text;
+            //选中
+            txtSQL.Select(len, text.Length);
             //滚动到光标处
             txtSQL.ScrollToCaret();
         }
 
         private void 查看表结构ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            TextBox txtSQL = (TextBox)(tabControl1.SelectedTab.Controls.Find("txtSQL", true)[0]);
 
-            txtSQL.Text += @"
+            string text = @"
 SELECT COLUMN_NAME 列名,DATA_TYPE 数据类型,CHARACTER_MAXIMUM_LENGTH 最大长度,IS_NULLABLE 允许Null值 FROM " + cmbDatabase.Text + ".information_schema.columns WHERE table_name = '" + cmbTable.Text + @"'
 ";
-            //光标移动到最后一个字符后面
-            txtSQL.Select(txtSQL.TextLength, 0);
+            TextBox txtSQL = (TextBox)(tabControl1.SelectedTab.Controls.Find("txtSQL", true)[0]);
+            //文本框文本长度
+            int len = txtSQL.Text.Length;
+            //在结尾追加文本
+            txtSQL.Text += text;
+            //选中
+            txtSQL.Select(len, text.Length);
             //滚动到光标处
             txtSQL.ScrollToCaret();
         }
@@ -705,7 +709,7 @@ SELECT COLUMN_NAME 列名,DATA_TYPE 数据类型,CHARACTER_MAXIMUM_LENGTH 最大
         private void 添加数据ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DataGridView dataGridView1 = (DataGridView)(tabControl1.SelectedTab.Controls.Find("dataGridView1", true)[0]);
-
+            if (dataGridView1.Rows.Count < 1) return;
             dataGridView1.FirstDisplayedScrollingRowIndex = dataGridView1.Rows.Count - 1;
             dataGridView1.ClearSelection();
             dataGridView1.Rows[dataGridView1.Rows.Count - 1].Selected = true;
@@ -723,7 +727,7 @@ SELECT COLUMN_NAME 列名,DATA_TYPE 数据类型,CHARACTER_MAXIMUM_LENGTH 最大
 
         private void 更新到数据库ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            if (dataGridView1.DataSource == null) return;
             statusStrip1.Items.Clear();
             statusStrip1.Items.Add("   AffectedRowCount: " + dBHelper.UpdateToDatabase(cmbTable.Text, (DataTable)dataGridView1.DataSource) + "");
         }
@@ -738,18 +742,21 @@ SELECT COLUMN_NAME 列名,DATA_TYPE 数据类型,CHARACTER_MAXIMUM_LENGTH 最大
         {
             Form form = new Form();
             form.Text = "  关于软件";
-            form.Size = new Size(270, 133);
+            form.Size = new Size(270, 153);
             form.FormBorderStyle = FormBorderStyle.FixedToolWindow;
             form.StartPosition = FormStartPosition.CenterParent;
 
             Label label1 = new Label();
             label1.AutoSize = true;
-            label1.Text = @"SSMS 1.1 Alpha
+            label1.Text = @"SSMS 1.2 Alpha
 
 
 作者企鹅：2267719005
 
-个人主页：http://3ghh.cn";
+个人主页：http://3ghh.cn
+
+更新日期：2019/8/1
+";
             label1.Location = new Point(9, 14);
 
             form.Controls.Add(label1);
@@ -767,10 +774,6 @@ SELECT COLUMN_NAME 列名,DATA_TYPE 数据类型,CHARACTER_MAXIMUM_LENGTH 最大
                 TextBox txtSQL = (TextBox)(tabControl1.SelectedTab.Controls.Find("txtSQL", true)[0]);
                 txtSQL.Text = File.ReadAllText(openFileDialog.FileName, Encoding.UTF8);
             }
-
-
-
-
 
         }
 
