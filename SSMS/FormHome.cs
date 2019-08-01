@@ -66,11 +66,11 @@ namespace SSMS
                 //查询数据列表
                 DataTable dt = dBHelper.GetDataTable("select name from sysdatabases");
 
+                //清理下拉框
+                cmbTable.Items.Clear();
 
                 if (dt.Rows.Count > 0)
                 {
-                    //清理下拉框
-                    cmbDatabase.Items.Clear();
 
                     //遍历添加表名
                     foreach (DataRow row in dt.Rows)
@@ -80,10 +80,7 @@ namespace SSMS
                     cmbDatabase.Text = cmbDatabase.Items[0].ToString();
 
                 }
-                else
-                {
-                    cmbDatabase.DataSource = null;
-                }
+
 
                 //cmbDatabase.ValueMember = "name";
                 //cmbDatabase.DisplayMember = "name";
@@ -113,6 +110,7 @@ namespace SSMS
         {
             string database = cmbDatabase.Text;
             string server = txtServer.Text, userID = txtUserID.Text, password = txtPassword.Text;
+
             if (txtUserID.Text != "" && txtPassword.Text != "")
                 dBHelper.connStr = "Data Source=" + server + ";Initial Catalog=" + database + ";Persist Security Info=True;User ID=" + userID + ";Password=" + password + ";Connect Timeout=1";
             else
@@ -122,11 +120,11 @@ namespace SSMS
 
             DataTable dt = dBHelper.GetDataTable("select name from sysobjects where xtype = 'U'");
 
+            //清理下拉框
+            cmbTable.Items.Clear();
+
             if (dt.Rows.Count > 0)
             {
-                //清理下拉框
-                cmbTable.Items.Clear();
-
                 //遍历添加表名
                 foreach (DataRow row in dt.Rows)
                     cmbTable.Items.Add(row["name"].ToString());
@@ -135,10 +133,7 @@ namespace SSMS
                 cmbTable.Text = cmbTable.Items[0].ToString();
 
             }
-            else
-            {
-                cmbTable.DataSource = null;
-            }
+           
         }
 
         private void cmbTable_TextChanged(object sender, EventArgs e)
