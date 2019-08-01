@@ -343,8 +343,6 @@ LOG ON
         private void 创建表ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string text = @"
-USE " + cmbDatabase.Text + @"
-
 CREATE TABLE Table_1
 (
     ID int IDENTITY(1,1) PRIMARY KEY,   --自增,种子1,增量1  主键
@@ -396,8 +394,8 @@ END
             string text = @"
 ALTER TABLE " + cmbTable.Text + @"
     ADD 
-    ID int IDENTITY(1,1) PRIMARY KEY,   --自增,种子1,增量1  主键
-    Name nvarchar(50) NOT NULL          --可变长度，每个字符占用两个字节 最多50个字节
+        ID int IDENTITY(1,1) PRIMARY KEY,
+        Name nvarchar(100) NOT NULL
 ";
             TextBox txtSQL = (TextBox)(tabControl1.SelectedTab.Controls.Find("txtSQL", true)[0]);
             //文本框文本长度
@@ -416,7 +414,7 @@ ALTER TABLE " + cmbTable.Text + @"
             string text = @"
 ALTER TABLE " + cmbTable.Text + @"
     ALTER COLUMN
-    column_name nvarchar(50)
+        column_name nvarchar(100)
 ";
             TextBox txtSQL = (TextBox)(tabControl1.SelectedTab.Controls.Find("txtSQL", true)[0]);
             //文本框文本长度
@@ -434,7 +432,7 @@ ALTER TABLE " + cmbTable.Text + @"
             string text = @"
 ALTER TABLE " + cmbTable.Text + @"
     DROP COLUMN
-    column_name
+        column_name
 ";
             TextBox txtSQL = (TextBox)(tabControl1.SelectedTab.Controls.Find("txtSQL", true)[0]);
             //文本框文本长度
@@ -748,7 +746,7 @@ SELECT COLUMN_NAME 列名,DATA_TYPE 数据类型,CHARACTER_MAXIMUM_LENGTH 最大
 
             Label label1 = new Label();
             label1.AutoSize = true;
-            label1.Text = @"SSMS 1.2 Alpha
+            label1.Text = @"SSMS 1.3 Alpha
 
 
 作者企鹅：2267719005
