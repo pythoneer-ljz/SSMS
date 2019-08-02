@@ -96,7 +96,7 @@ namespace SSMS
                 btnQuery.Enabled =
                 执行F5ToolStripMenuItem.Enabled =
                     false;
- 
+
 
                 MessageBox.Show(ex.Message);
             }
@@ -130,7 +130,7 @@ namespace SSMS
                 cmbTable.Text = cmbTable.Items[0].ToString();
 
             }
-           
+
         }
 
         private void cmbTable_TextChanged(object sender, EventArgs e)
@@ -189,7 +189,7 @@ namespace SSMS
             hashtable.Add("sql_variant", "object");
             hashtable.Add("date", "string");
             hashtable.Add("time", "string");
-            
+
             string text = "未知类型";
             if (!string.IsNullOrEmpty(dbtype))
             {
