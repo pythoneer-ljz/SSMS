@@ -56,7 +56,7 @@ namespace SSMS
             try
             {
                 string server = txtServer.Text, userID = txtUserID.Text, password = txtPassword.Text;
-                if (txtUserID.Text != "" && txtPassword.Text != "")
+                if (txtUserID.Text != "" || txtPassword.Text != "")
                     dBHelper.connStr = "Data Source=" + server + ";Initial Catalog=;User ID=" + userID + ";Password=" + password + ";Connect Timeout=1";
                 else
                     dBHelper.connStr = "Data Source=" + server + ";Initial Catalog=;Integrated Security=True;Connect Timeout=1";
@@ -66,8 +66,9 @@ namespace SSMS
                 //查询数据列表
                 DataTable dt = dBHelper.GetDataTable("select name from sysdatabases");
 
-                //清理下拉框
-                cmbTable.Items.Clear();
+                //清理
+                cmbDatabase.Items.Clear();
+                cmbTable.Text = "";
 
                 if (dt.Rows.Count > 0)
                 {
@@ -80,11 +81,6 @@ namespace SSMS
                     cmbDatabase.Text = cmbDatabase.Items[0].ToString();
 
                 }
-
-
-                //cmbDatabase.ValueMember = "name";
-                //cmbDatabase.DisplayMember = "name";
-                //cmbDatabase.DataSource = dt;
 
                 cmbDatabase.Enabled =
                 cmbTable.Enabled =
@@ -100,6 +96,7 @@ namespace SSMS
                 btnQuery.Enabled =
                 执行F5ToolStripMenuItem.Enabled =
                     false;
+ 
 
                 MessageBox.Show(ex.Message);
             }
@@ -120,9 +117,9 @@ namespace SSMS
 
             DataTable dt = dBHelper.GetDataTable("select name from sysobjects where xtype = 'U'");
 
-            //清理下拉框
+            //清理
             cmbTable.Items.Clear();
-
+            cmbTable.Text = "";
             if (dt.Rows.Count > 0)
             {
                 //遍历添加表名
@@ -190,6 +187,9 @@ namespace SSMS
             hashtable.Add("varchar", "string");
             hashtable.Add("xml", "string");
             hashtable.Add("sql_variant", "object");
+            hashtable.Add("date", "string");
+            hashtable.Add("time", "string");
+            
             string text = "未知类型";
             if (!string.IsNullOrEmpty(dbtype))
             {
@@ -781,14 +781,14 @@ order by a.[name] asc
 
             Label label1 = new Label();
             label1.AutoSize = true;
-            label1.Text = @"SSMS 1.4 Alpha
+            label1.Text = @"SSMS 1.5 Release
 
 
 作者企鹅：2267719005
 
 个人主页：http://3ghh.cn
 
-更新日期：2019/8/1
+更新日期：2019/8/2
 ";
             label1.Location = new Point(9, 14);
 
@@ -815,12 +815,12 @@ order by a.[name] asc
             SaveFileDialog saveFileDialog = new SaveFileDialog();
             saveFileDialog.Filter = "SQL 文件(*.sql)|*.sql";
             saveFileDialog.FileName = "SQLQuery1.sql";
-            saveFileDialog.ShowDialog();
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                TextBox txtSQL = (TextBox)(tabControl1.SelectedTab.Controls.Find("txtSQL", true)[0]);
 
-            TextBox txtSQL = (TextBox)(tabControl1.SelectedTab.Controls.Find("txtSQL", true)[0]);
-
-
-            File.WriteAllText(saveFileDialog.FileName, txtSQL.Text, Encoding.UTF8);
+                File.WriteAllText(saveFileDialog.FileName, txtSQL.Text, Encoding.UTF8);
+            }
         }
 
 
