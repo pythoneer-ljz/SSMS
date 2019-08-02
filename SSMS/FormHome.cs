@@ -781,7 +781,7 @@ order by a.[name] asc
 
             Label label1 = new Label();
             label1.AutoSize = true;
-            label1.Text = @"SSMS 1.5 Release
+            label1.Text = @"SSMS 1.0
 
 
 作者企鹅：2267719005
