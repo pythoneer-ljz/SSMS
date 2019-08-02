@@ -63,6 +63,9 @@
             this.创建数据库ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.库ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.新建表ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.存储过程ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.查看ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.新建ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.表ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.结构视图ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.新增列ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -71,9 +74,6 @@
             this.新建查询窗口ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.关于ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.存储过程ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.查看ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.新建ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -254,7 +254,6 @@
             this.txtUserID.Name = "txtUserID";
             this.txtUserID.Size = new System.Drawing.Size(87, 21);
             this.txtUserID.TabIndex = 1;
-            this.txtUserID.Text = "sa";
             // 
             // txtServer
             // 
@@ -428,7 +427,7 @@
             this.新建表ToolStripMenuItem,
             this.存储过程ToolStripMenuItem});
             this.库ToolStripMenuItem.Name = "库ToolStripMenuItem";
-            this.库ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.库ToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
             this.库ToolStripMenuItem.Text = "库";
             // 
             // 新建表ToolStripMenuItem
@@ -436,9 +435,34 @@
             this.新建表ToolStripMenuItem.Name = "新建表ToolStripMenuItem";
             this.新建表ToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
             | System.Windows.Forms.Keys.T)));
-            this.新建表ToolStripMenuItem.Size = new System.Drawing.Size(226, 22);
+            this.新建表ToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
             this.新建表ToolStripMenuItem.Text = "新建表";
             this.新建表ToolStripMenuItem.Click += new System.EventHandler(this.创建表ToolStripMenuItem_Click);
+            // 
+            // 存储过程ToolStripMenuItem
+            // 
+            this.存储过程ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.查看ToolStripMenuItem,
+            this.新建ToolStripMenuItem});
+            this.存储过程ToolStripMenuItem.Name = "存储过程ToolStripMenuItem";
+            this.存储过程ToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.存储过程ToolStripMenuItem.Text = "存储过程和视图";
+            // 
+            // 查看ToolStripMenuItem
+            // 
+            this.查看ToolStripMenuItem.Name = "查看ToolStripMenuItem";
+            this.查看ToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.查看ToolStripMenuItem.Text = "查看";
+            this.查看ToolStripMenuItem.Click += new System.EventHandler(this.查看ToolStripMenuItem_Click);
+            // 
+            // 新建ToolStripMenuItem
+            // 
+            this.新建ToolStripMenuItem.Name = "新建ToolStripMenuItem";
+            this.新建ToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
+            | System.Windows.Forms.Keys.P)));
+            this.新建ToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.新建ToolStripMenuItem.Text = "新建";
+            this.新建ToolStripMenuItem.Click += new System.EventHandler(this.创建存储过程ToolStripMenuItem_Click);
             // 
             // 表ToolStripMenuItem
             // 
@@ -511,31 +535,6 @@
             this.statusStrip1.Size = new System.Drawing.Size(784, 22);
             this.statusStrip1.TabIndex = 4;
             this.statusStrip1.Text = "statusStrip1";
-            // 
-            // 存储过程ToolStripMenuItem
-            // 
-            this.存储过程ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.查看ToolStripMenuItem,
-            this.新建ToolStripMenuItem});
-            this.存储过程ToolStripMenuItem.Name = "存储过程ToolStripMenuItem";
-            this.存储过程ToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
-            this.存储过程ToolStripMenuItem.Text = "存储过程和视图";
-            // 
-            // 查看ToolStripMenuItem
-            // 
-            this.查看ToolStripMenuItem.Name = "查看ToolStripMenuItem";
-            this.查看ToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
-            this.查看ToolStripMenuItem.Text = "查看";
-            this.查看ToolStripMenuItem.Click += new System.EventHandler(this.查看ToolStripMenuItem_Click);
-            // 
-            // 新建ToolStripMenuItem
-            // 
-            this.新建ToolStripMenuItem.Name = "新建ToolStripMenuItem";
-            this.新建ToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
-            | System.Windows.Forms.Keys.P)));
-            this.新建ToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
-            this.新建ToolStripMenuItem.Text = "新建";
-            this.新建ToolStripMenuItem.Click += new System.EventHandler(this.创建存储过程ToolStripMenuItem_Click);
             // 
             // FormHome
             // 
