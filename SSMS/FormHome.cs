@@ -624,10 +624,13 @@ order by a.[name] asc
 
             Form form = new Form();
             form.Text = "  查找";
-            form.Size = new Size(406, 90);
+            form.MaximumSize =
+            form.Size = new Size(406, 80);
+            form.MaximizeBox = false;
             form.Location = new Point(((Width - form.Size.Width) / 2) + Location.X, (Height - form.Size.Height) / 2 + Location.Y);
             form.FormBorderStyle = FormBorderStyle.FixedToolWindow;
             form.StartPosition = FormStartPosition.Manual;
+            form.Opacity = 0.9;
 
             Label label1 = new Label();
             label1.AutoSize = true;
@@ -769,7 +772,9 @@ order by a.[name] asc
         {
             Form form = new Form();
             form.Text = "  关于软件";
-            form.Size = new Size(270, 153);
+            form.MaximumSize =
+            form.Size = new Size(300, 176);
+            form.MaximizeBox = false;
             form.FormBorderStyle = FormBorderStyle.FixedToolWindow;
             form.StartPosition = FormStartPosition.CenterParent;
 
@@ -784,7 +789,7 @@ order by a.[name] asc
 
 项目地址：https://github.com/Jiuzhou-Liu/SSMS
 
-更新日期：2019/8/14
+更新日期：2019/8/15
 ";
             label1.Location = new Point(9, 14);
 

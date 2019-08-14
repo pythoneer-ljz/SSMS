@@ -90,7 +90,7 @@
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer1.Location = new System.Drawing.Point(4, 4);
-            this.splitContainer1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.splitContainer1.Margin = new System.Windows.Forms.Padding(4);
             this.splitContainer1.Name = "splitContainer1";
             this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -114,7 +114,7 @@
             this.txtSQL.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.txtSQL.ForeColor = System.Drawing.Color.Black;
             this.txtSQL.Location = new System.Drawing.Point(0, 0);
-            this.txtSQL.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtSQL.Margin = new System.Windows.Forms.Padding(4);
             this.txtSQL.MaxLength = 32767000;
             this.txtSQL.Multiline = true;
             this.txtSQL.Name = "txtSQL";
@@ -129,7 +129,7 @@
             this.dataGridView1.ContextMenuStrip = this.contextMenuStrip1;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 23;
@@ -185,7 +185,7 @@
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Location = new System.Drawing.Point(16, 149);
-            this.tabControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabControl1.Margin = new System.Windows.Forms.Padding(4);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(1013, 539);
@@ -197,9 +197,9 @@
             // 
             this.tabPage1.Controls.Add(this.splitContainer1);
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
-            this.tabPage1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage1.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(4);
             this.tabPage1.Size = new System.Drawing.Size(1005, 510);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "SQL查询";
@@ -209,9 +209,9 @@
             // 
             this.tabPage2.Controls.Add(this.txtEntityClass);
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
-            this.tabPage2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage2.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(4);
             this.tabPage2.Size = new System.Drawing.Size(1005, 510);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "实体类";
@@ -222,7 +222,7 @@
             this.txtEntityClass.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtEntityClass.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.txtEntityClass.Location = new System.Drawing.Point(4, 4);
-            this.txtEntityClass.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtEntityClass.Margin = new System.Windows.Forms.Padding(4);
             this.txtEntityClass.Multiline = true;
             this.txtEntityClass.Name = "txtEntityClass";
             this.txtEntityClass.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
@@ -243,9 +243,9 @@
             this.groupBox1.Controls.Add(this.btnQuery);
             this.groupBox1.Controls.Add(this.btnLogin);
             this.groupBox1.Location = new System.Drawing.Point(16, 49);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox1.Size = new System.Drawing.Size(1013, 76);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
@@ -254,7 +254,7 @@
             // txtPassword
             // 
             this.txtPassword.Location = new System.Drawing.Point(220, 31);
-            this.txtPassword.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtPassword.Margin = new System.Windows.Forms.Padding(4);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(104, 25);
             this.txtPassword.TabIndex = 2;
@@ -262,7 +262,7 @@
             // txtUserID
             // 
             this.txtUserID.Location = new System.Drawing.Point(96, 31);
-            this.txtUserID.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtUserID.Margin = new System.Windows.Forms.Padding(4);
             this.txtUserID.Name = "txtUserID";
             this.txtUserID.Size = new System.Drawing.Size(115, 25);
             this.txtUserID.TabIndex = 1;
@@ -270,7 +270,7 @@
             // txtServer
             // 
             this.txtServer.Location = new System.Drawing.Point(9, 31);
-            this.txtServer.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtServer.Margin = new System.Windows.Forms.Padding(4);
             this.txtServer.Name = "txtServer";
             this.txtServer.Size = new System.Drawing.Size(77, 25);
             this.txtServer.TabIndex = 0;
@@ -293,7 +293,7 @@
             this.cmbTable.Enabled = false;
             this.cmbTable.FormattingEnabled = true;
             this.cmbTable.Location = new System.Drawing.Point(719, 31);
-            this.cmbTable.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbTable.Margin = new System.Windows.Forms.Padding(4);
             this.cmbTable.Name = "cmbTable";
             this.cmbTable.Size = new System.Drawing.Size(185, 23);
             this.cmbTable.TabIndex = 5;
@@ -306,7 +306,7 @@
             this.cmbDatabase.Enabled = false;
             this.cmbDatabase.FormattingEnabled = true;
             this.cmbDatabase.Location = new System.Drawing.Point(521, 31);
-            this.cmbDatabase.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbDatabase.Margin = new System.Windows.Forms.Padding(4);
             this.cmbDatabase.Name = "cmbDatabase";
             this.cmbDatabase.Size = new System.Drawing.Size(185, 23);
             this.cmbDatabase.TabIndex = 4;
@@ -317,7 +317,7 @@
             this.btnQuery.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnQuery.Enabled = false;
             this.btnQuery.Location = new System.Drawing.Point(913, 30);
-            this.btnQuery.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnQuery.Margin = new System.Windows.Forms.Padding(4);
             this.btnQuery.Name = "btnQuery";
             this.btnQuery.Size = new System.Drawing.Size(79, 29);
             this.btnQuery.TabIndex = 6;
@@ -328,7 +328,7 @@
             // btnLogin
             // 
             this.btnLogin.Location = new System.Drawing.Point(332, 30);
-            this.btnLogin.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnLogin.Margin = new System.Windows.Forms.Padding(4);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(79, 29);
             this.btnLogin.TabIndex = 3;
@@ -359,7 +359,7 @@
             this.执行F5ToolStripMenuItem.Name = "执行F5ToolStripMenuItem";
             this.执行F5ToolStripMenuItem.ShortcutKeyDisplayString = "";
             this.执行F5ToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F5;
-            this.执行F5ToolStripMenuItem.Size = new System.Drawing.Size(80, 26);
+            this.执行F5ToolStripMenuItem.Size = new System.Drawing.Size(80, 24);
             this.执行F5ToolStripMenuItem.Text = "执行(F5)";
             this.执行F5ToolStripMenuItem.Click += new System.EventHandler(this.执行F5ToolStripMenuItem_Click);
             // 
@@ -370,7 +370,7 @@
             this.保存ToolStripMenuItem,
             this.保存实体类ToolStripMenuItem});
             this.文件ToolStripMenuItem.Name = "文件ToolStripMenuItem";
-            this.文件ToolStripMenuItem.Size = new System.Drawing.Size(71, 26);
+            this.文件ToolStripMenuItem.Size = new System.Drawing.Size(71, 24);
             this.文件ToolStripMenuItem.Text = "文件(&F)";
             // 
             // 打开ToolStripMenuItem
@@ -403,7 +403,7 @@
             this.查找ToolStripMenuItem});
             this.清空ToolStripMenuItem.Name = "清空ToolStripMenuItem";
             this.清空ToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.R)));
-            this.清空ToolStripMenuItem.Size = new System.Drawing.Size(71, 26);
+            this.清空ToolStripMenuItem.Size = new System.Drawing.Size(71, 24);
             this.清空ToolStripMenuItem.Text = "编辑(&E)";
             // 
             // 清空ToolStripMenuItem1
@@ -429,13 +429,13 @@
             this.库ToolStripMenuItem,
             this.表ToolStripMenuItem});
             this.插入ToolStripMenuItem1.Name = "插入ToolStripMenuItem1";
-            this.插入ToolStripMenuItem1.Size = new System.Drawing.Size(67, 26);
+            this.插入ToolStripMenuItem1.Size = new System.Drawing.Size(67, 24);
             this.插入ToolStripMenuItem1.Text = "插入(&I)";
             // 
             // 创建数据库ToolStripMenuItem
             // 
             this.创建数据库ToolStripMenuItem.Name = "创建数据库ToolStripMenuItem";
-            this.创建数据库ToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.创建数据库ToolStripMenuItem.Size = new System.Drawing.Size(137, 26);
             this.创建数据库ToolStripMenuItem.Text = "新建库";
             this.创建数据库ToolStripMenuItem.Click += new System.EventHandler(this.创建数据库ToolStripMenuItem_Click);
             // 
@@ -445,7 +445,7 @@
             this.新建表ToolStripMenuItem,
             this.存储过程ToolStripMenuItem});
             this.库ToolStripMenuItem.Name = "库ToolStripMenuItem";
-            this.库ToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.库ToolStripMenuItem.Size = new System.Drawing.Size(137, 26);
             this.库ToolStripMenuItem.Text = "库";
             // 
             // 新建表ToolStripMenuItem
@@ -490,7 +490,7 @@
             this.修改列ToolStripMenuItem,
             this.删除列ToolStripMenuItem});
             this.表ToolStripMenuItem.Name = "表ToolStripMenuItem";
-            this.表ToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.表ToolStripMenuItem.Size = new System.Drawing.Size(137, 26);
             this.表ToolStripMenuItem.Text = "表";
             // 
             // 结构视图ToolStripMenuItem
@@ -533,14 +533,14 @@
             // 
             this.新建查询窗口ToolStripMenuItem.Name = "新建查询窗口ToolStripMenuItem";
             this.新建查询窗口ToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.T)));
-            this.新建查询窗口ToolStripMenuItem.Size = new System.Drawing.Size(83, 26);
+            this.新建查询窗口ToolStripMenuItem.Size = new System.Drawing.Size(83, 24);
             this.新建查询窗口ToolStripMenuItem.Text = "新建查询";
             this.新建查询窗口ToolStripMenuItem.Click += new System.EventHandler(this.新建查询窗口ToolStripMenuItem_Click);
             // 
             // 关于ToolStripMenuItem
             // 
             this.关于ToolStripMenuItem.Name = "关于ToolStripMenuItem";
-            this.关于ToolStripMenuItem.Size = new System.Drawing.Size(53, 26);
+            this.关于ToolStripMenuItem.Size = new System.Drawing.Size(53, 24);
             this.关于ToolStripMenuItem.Text = "关于";
             this.关于ToolStripMenuItem.Click += new System.EventHandler(this.关于ToolStripMenuItem_Click);
             // 
@@ -564,7 +564,7 @@
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormHome";
             this.Text = "SSMS";
             this.Load += new System.EventHandler(this.Form1_Load);
