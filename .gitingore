@@ -1,2 +1,2 @@
-SSMS/**/bin
-SSMS/**/obj
+/SSMS/bin/
+/SSMS/obj/
