@@ -267,7 +267,7 @@ namespace SSMS
                 sql = txtSQL.Text;
             }
 
-            if (sql.Contains("GO\r\n"))
+            if (sql.Contains("GO\r\n") || sql.Contains("go\r\n"))
             {
                 string[] datas = Regex.Split(sql, "GO", RegexOptions.IgnoreCase);
                 foreach (string str in datas)
@@ -625,9 +625,9 @@ order by a.[name] asc
             Form form = new Form();
             form.Text = "  查找";
             form.Size = new Size(406, 90);
-
+            form.Location = new Point(((Width - form.Size.Width) / 2) + Location.X, (Height - form.Size.Height) / 2 + Location.Y);
             form.FormBorderStyle = FormBorderStyle.FixedToolWindow;
-            form.StartPosition = FormStartPosition.CenterParent;
+            form.StartPosition = FormStartPosition.Manual;
 
             Label label1 = new Label();
             label1.AutoSize = true;
@@ -659,7 +659,7 @@ order by a.[name] asc
             form.Controls.Add(button2);
 
 
-            form.StartPosition = FormStartPosition.CenterScreen;
+
             form.TopMost = true;
             form.Show();
         }
@@ -694,10 +694,6 @@ order by a.[name] asc
             }
 
             Focus();
-
-
-
-
         }
 
 
@@ -730,8 +726,6 @@ order by a.[name] asc
 
             }
             Focus();
-
-
         }
 
         private void 保存ToolStripMenuItem_Click_1(object sender, EventArgs e)
@@ -781,14 +775,16 @@ order by a.[name] asc
 
             Label label1 = new Label();
             label1.AutoSize = true;
-            label1.Text = @"SSMS 1.0
+            label1.Text = @"SSMS 1.0.1
 
 
 作者企鹅：2267719005
 
 个人主页：http://3ghh.cn
 
-更新日期：2019/8/2
+项目地址：https://github.com/Jiuzhou-Liu/SSMS
+
+更新日期：2019/8/14
 ";
             label1.Location = new Point(9, 14);
 
